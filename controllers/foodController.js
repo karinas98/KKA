@@ -1,5 +1,4 @@
 import Food from "../models/food.js";
-
  const getAll = async(req,res,next) => {
     try {
         const foods = await Food.find();
@@ -32,6 +31,9 @@ const getById= async(req,res,next)=>{
 }
 const create = async(req,res,next)=>{
     const newFood=req.body
+    if (req.currentUser.role !== "admin"){
+        return res.status(400).json({message: "Not authenticated"})
+    }
     try{
         const createdFood = await Food.create(newFood);
         return res
@@ -50,12 +52,18 @@ const updateById = async (req, res, next) => {
      const id =req.params["id"];
 
   try {
-     const updatedFood = await Food.findByIdAndUpdate(id, req.body,{
-        returnDocument: "after"});
-//if (req.body.role !== "admin"){
-    if (!updatedFood) {
-        return res.status(404).json({message: `Food with id of ${id} not found`})
-    }
+
+    const updatedFood = await Food.findByIdAndUpdate(id, req.body,{
+      returnDocument: "after"});
+        if (req.currentUser.role !== "admin"){
+            return res.status(400).json({message: "Not authenticated"})
+        }
+
+
+        if (!updatedFood) {
+          return res.status(404).json({message: `Food with id of ${id} not found`})
+      }
+    
     return res.status(200).json({
       succes: true,
       msg: 'the food with the id has been found',
@@ -70,6 +78,9 @@ const deleteById = async (req, res, next) => {
   const id = req.params['id'];
 
   try {
+    if (req.currentUser.role.role !== "admin"){
+        return res.status(400).json({message: "Not authenticated"})
+    }
     const deletedFood = await Food.findByIdAndDelete(id);
     if (!deletedFood) {
       return res
