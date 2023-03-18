@@ -7,7 +7,8 @@ import { body } from "express-validator";
 import validate from "./middleware/validate.js";
 
 const router = express.Router();
-router.route('/foods').get(foodController.getAll).post(foodController.create);
+
+router.route('/foods').get(foodController.getAll).post(auth,foodController.create);
 router
   .route('/foods/:id')
   .get(foodController.getById)

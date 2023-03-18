@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 
- const reviewSchema = mongoose.Schema({
-
-    text:{ type:String, required:true },
+const reviewSchema = mongoose.Schema(
+  {
+    text: { type: String, required: true },
     //stars:{type: Integer, required: true}
-    createdBy:{type: mongoose.Schema.ObjectId, ref: "user"}
- },
- {timestamps: true}
- )
+    createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  },
+  { timestamps: true }
+);
 
 const foodSchema = mongoose.Schema(
   {
@@ -15,21 +15,18 @@ const foodSchema = mongoose.Schema(
     name: { type: String, required: true },
     origin: { type: String, required: true },
     description: { type: String, required: true },
-    review: [reviewSchema],
+    reviews: [reviewSchema],
     // liking: {
     // type: Number,
     // min: 1,
     // max: 5,
     // default: 3
-//   }
+    //   }
   },
   {
     timestamps: true,
-  },
-
+  }
 );
-
 
 // export const FoodModel=mongoose.model("Food", foodSchema)
 export default mongoose.model('Food', foodSchema);
-

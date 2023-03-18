@@ -6,13 +6,13 @@ const createReview = async (req, res, next) => {
   const userId = req.currentUser.id.toString();
   try {
     const findFood = await Food.findById(foodId);
-    if (req.currentUser.role !== "user"){
-        return res.status(401).json({message: "Unauthorized"})
+    if (req.currentUser.role !== 'user') {
+      return res.status(401).json({ message: 'Unauthorized' });
     }
     if (!findFood) {
       return res.status(404).json({ message: 'Id not found' });
     }
-    findFood.review.push({ text, createdBy: userId });
+    findFood.reviews.push({ text, createdBy: userId });
     await findFood.save();
     return res.status(200).json({ message: 'Review succesfully added' });
   } catch (err) {
@@ -27,10 +27,10 @@ const updateReview = async (req, res, next) => {
   if (!findFood) {
     return res.status(404).json({ message: 'Id not found' });
   }
-  if (req.currentUser.id !== findFood.review.createdBy) {
+  if (req.currentUser.id !== findFood.reviews.createdBy) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
-  const findReview = findFood.review.find((reviews) => reviews.id === reviewId);
+  const findReview = findFood.reviews.find((review) => review.id === reviewId);
 
   if (!findReview) {
     return res.status(404).json({ message: `Review ${findReview} not found` });
@@ -52,9 +52,14 @@ const deleteReview = async (req, res, next) => {
     if (req.currentUser.role !== 'admin') {
       return res.status(401).json({ message: 'Unauthorized' });
     }
-    findFood.review = findFood.review.filter(
-      (reviews) => reviews.id !== reviewId
-    );
+    // const foundReview = findFood.review.find(
+    //   (review) => review.id === reviewId
+    // );
+    // foundReview.remove();
+    // await findFood.save();
+     findFood.reviews = findFood.reviews.filter(
+       (review) => review.id !== reviewId
+     );
     await findFood.save();
     return res.status(200).json({ message: 'Review succesfully deleted' });
   } catch (err) {
