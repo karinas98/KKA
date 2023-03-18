@@ -3,22 +3,14 @@ import mongoose from 'mongoose';
 import Food from '../models/food.js';
 import User from '../models/user.js';
 import bcrypt from "bcrypt"
+import foodData from './foodsData.js';
 
 const hashPassword = async (plainTxtPassword) => {
   const hashedPassword = await bcrypt.hash(plainTxtPassword, 10);
   return hashedPassword
 }
 
-const seedingData = {
-  foods: [
-    {
-      imageUrl: "https://www.allrecipes.com/thmb/yZXg4JBuCszkSx2y1og-pvjt0Pk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Are-Potatoes-Vegetables-3x2-1-e1743111587b4ff799c84944070945fe.png",
-      name: 'Potatoz',
-      origin: 'America',
-      description: '1800 first made',
-      review: []
-    },
-  ],
+const seedingData = {foodData,
   users: [
     {
       email: "admin@gmail.com",
@@ -38,10 +30,10 @@ const seedingData = {
 
 const seedDb = async () => {
   await connectToDb();
-  await mongoose.connection.db.dropDatabase();
+  //await mongoose.connection.db.dropDatabase();
   console.log('Database connected!');
-  await Food.create(seedingData.foods);
-  await User.create(seedingData.users)
+  await Food.create(foodData.foods);
+  await User.create(seedingData.users);
   console.log(`Succesfully created ${seedingData.users}`);
   console.log(`Succesfully created ${seedingData.foods}`);
   await mongoose.disconnect();
