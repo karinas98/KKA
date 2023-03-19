@@ -11,7 +11,8 @@ const reviewSchema = mongoose.Schema(
 
 const foodSchema = mongoose.Schema(
   {
-    imageUrl: { type: String, required: true },
+    foodUrl: { type: String, required: true },
+    flagUrl: { type: String, required: true },
     name: { type: String, required: true },
     origin: { type: String, required: true },
     description: { type: String, required: true },

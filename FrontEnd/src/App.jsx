@@ -1,17 +1,21 @@
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import NavBar from './components/NavBar';
+import Register from './pages/Register';
+import Explore from './pages/Explore';
+import MyList from './pages/MyList';
+import Login from './pages/Login';
 
 const App = () => {
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/explore" element={<Explore/>}/>
-        <Route path="/mylist" element={<MyList/>}/>
-        <Route path="/register" element={<Login/>}/>
-        <Route path="/login" element={<Register/>}/> */}
+         <Route path="/explore" element={<Explore />} />
+          <Route path="/mylist" element={<MyList />} />
+         <Route path="/login" element={<Login />} /> 
+         <Route path="/register" element={<Register />}/>
       </Routes>
     </div>
   );
