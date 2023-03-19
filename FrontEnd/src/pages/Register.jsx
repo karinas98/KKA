@@ -31,7 +31,7 @@ const Register = () => {
       setFormData(formData);
     } catch (err) {
       console.log(err);
-      // setError(response.data.message);
+      setError(response.data.message);
     }
   };
   return (
