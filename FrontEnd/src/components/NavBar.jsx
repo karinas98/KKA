@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 
 
+
+
 const NavBar = () => {
   const navigationLinks = [
     { title: 'Home', slug: '/' },
@@ -10,7 +12,7 @@ const NavBar = () => {
     { title: 'Login', slug: '/login' },
   ];
 
-  console.log(navigationLinks);
+  // console.log(navigationLinks);
   return (
     <nav>
       <ul>

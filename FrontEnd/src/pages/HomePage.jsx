@@ -1,7 +1,5 @@
-const HomePage = () => {
-    return(
-        <h1>Good foods miam</h1>
-    )
-}
 
-export default HomePage
+const HomePage = () => {
+  return <h1>Homepage</h1>;
+};
+export default HomePage;

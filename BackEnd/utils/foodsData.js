@@ -137,8 +137,8 @@ const foodData = {
       foodUrl: 'https://asset.cloudinary.com/de9zdtobn/e9c7760011cf730c16d41cef0c18fe86',
       name: 'Yakiniku',
       origin: 'Japan & South Korea',
-      flag1Url: 'https://asset.cloudinary.com/de9zdtobn/82d51fdbf6ec4fb0147da82503fb3400',
-      flag2Url: 'https://asset.cloudinary.com/de9zdtobn/465434d2db83cce64a03887114647217',
+      flagUrl: 'https://asset.cloudinary.com/de9zdtobn/82d51fdbf6ec4fb0147da82503fb3400',
+      // flag2Url: 'https://asset.cloudinary.com/de9zdtobn/465434d2db83cce64a03887114647217',
       description: `Yakiniku is a term denoting a Japanese technique (with Korean origins) of cooking bite-sized pieces of meat and vegetables on a table grill. It can also refer to a number of dishes cooked using the same technique. Yakiniku has Korean origins and was inspired by the famous Korean dishes galbi and bulgogi, although the meat in yakiniku is usually not marinated before grilling.
       Traditionally, raw, thinly sliced meat and vegetables are brought to the table and grilled by the consumers. The most popular meat for yakiniku includes beef, pork, chicken, and a variety of shellfish. Numerous sauces and dips are usually served on the side - from soy sauce and miso sauce to garlic oil sauce.
       These tasty dishes are very popular at large social gatherings and celebrations, and there is even an official Yakiniku Day, celebrated annually on August 29 ever since 1993.`,

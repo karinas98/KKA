@@ -6,6 +6,7 @@ import reviewController from "./controllers/reviewController.js"
 import { body } from "express-validator";
 import validate from "./middleware/validate.js";
 
+
 const router = express.Router();
 
 router.route('/foods').get(foodController.getAll).post(auth,foodController.create);
