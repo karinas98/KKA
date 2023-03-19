@@ -27,16 +27,17 @@ const Register = () => {
     try {
       const res = await axios.post(`${API_URL}/register`, formData);
       console.log(res);
-      setMessage(response.code);
+      setMessage(res.data.data.message);
       setFormData(formData);
     } catch (err) {
       console.log(err);
-      // setError(response.data.message);
+      setError(err.response.data.data.message);
     }
   };
   return (
     <div>
       {message && <h4>{message}</h4>}
+      {error && <h4>{error}</h4>}
       <form onSubmit={onSubmit}>
         <input
           placeholder="UserName"
