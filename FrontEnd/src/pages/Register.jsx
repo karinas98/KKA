@@ -27,11 +27,11 @@ const Register = () => {
     try {
       const res = await axios.post(`${API_URL}/register`, formData);
       console.log(res);
-      setMessage(res.data.data.message);
+      setMessage(res.data.message);
       setFormData(formData);
     } catch (err) {
       console.log(err);
-      setError(err.response.data.data.message);
+      setError(err.response.data.message);
     }
   };
   return (
