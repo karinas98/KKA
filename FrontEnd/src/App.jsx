@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Explore from './pages/Explore';
 import MyList from './pages/MyList';
 import Login from './pages/Login';
+import './styling/main.scss';
 
 const App = () => {
   return (
@@ -12,13 +13,13 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-         <Route path="/explore" element={<Explore />} />
-          <Route path="/mylist" element={<MyList />} />
-         <Route path="/login" element={<Login />} /> 
-         <Route path="/register" element={<Register />}/>
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/mylist" element={<MyList />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );
-}
+};
 
 export default App;
