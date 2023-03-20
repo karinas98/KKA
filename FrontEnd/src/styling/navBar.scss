@@ -1,0 +1,32 @@
+
+*{
+  padding:0;
+  margin:0;
+}
+
+nav{
+  align-items:center;
+  display:flex;
+  justify-content: space-between;
+  margin:3em 0em 3em 0em;
+
+}
+li{
+  list-style: none;
+}
+ul{
+  gap:2em;
+}
+
+.primary-nav {
+  display: flex;
+  justify-content:flex-start;
+  margin-left:4em;
+
+}
+.secondary-nav{
+ display: flex;
+  justify-content:flex-end;
+  margin-right:4em;
+}
+
