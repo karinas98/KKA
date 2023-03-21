@@ -1,5 +1,7 @@
-
+import { useState } from "react";
+import { API_URL } from "../consts-data";
 const HomePage = () => {
-  return <h1>Homepage</h1>;
+
+  return 
 };
 export default HomePage;
