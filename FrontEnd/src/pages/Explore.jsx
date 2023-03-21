@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { API_URL } from '../consts-data';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URL } from "../consts-data";
+import Card from "react-bootstrap/Card";
 
 const Explore = () => {
   const [data, setData] = useState([]);
@@ -29,17 +30,26 @@ const Explore = () => {
         <ul>
           {data.data.map((element, ind) => (
             <ul key={ind}>
-              <li>
-                <h2>{element.name}</h2>
-              </li>
-              <img src={element.foodUrl} alt="food image" />
-              <li>
-                <p>
-                  {element.origin}- <img src={element.flagUrl} alt="flags" />
-                </p>
-                <p>{element.description}</p>
-              </li>
-              <li>{element.reviews} reviews</li>
+              <Card style={{ width: "18rem" }}>
+                <Card.Img
+                  variant="top"
+                  src={element.foodUrl}
+                  alt="food image"
+                />
+                <Card.Body>
+                  <li>
+                    <Card.Title>{element.name}</Card.Title>
+                  </li>
+                  <li>
+                    <Card.Text>{element.origin}</Card.Text>
+                    <Card.Img src={element.flagUrl} alt="flags" />
+                    <Card.Img src={element.flag2Url} alt="flags" />
+                    <Card.Text>{element.description}</Card.Text>
+                  </li>
+                  {/* <li>{element.reviews} reviews</li> */}
+                  {/* <Button className="favorite" variant="primary"></Button> */}
+                </Card.Body>
+              </Card>
             </ul>
           ))}
         </ul>
