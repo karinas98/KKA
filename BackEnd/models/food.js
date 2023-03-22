@@ -13,6 +13,7 @@ const foodSchema = mongoose.Schema(
   {
     foodUrl: { type: String, required: true },
     flagUrl: { type: String, required: true },
+    flag2Url:{type: String},
     name: { type: String, required: true },
     origin: { type: String, required: true },
     description: { type: String, required: true },

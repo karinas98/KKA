@@ -7,7 +7,7 @@ import router from "./router.js";
 import cors from "cors"
 
 const app = express();
-const PORT = 2000;
+const PORT = 2001;
 app.use(cors())
 app.use(express.json());
 app.use(logger);

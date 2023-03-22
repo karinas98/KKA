@@ -30,7 +30,7 @@ const seedingData = {
 
 const seedDb = async () => {
   await connectToDb();
-   //await mongoose.connection.db.dropDatabase();
+   await mongoose.connection.db.dropDatabase();
   console.log('Database connected!');
   await Food.create(foodData.foods);
   await User.create(seedingData.users);
