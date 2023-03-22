@@ -1,24 +1,26 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { API_URL } from '../consts-data';
-import Card from 'react-bootstrap/Card';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { API_URL } from "../consts-data";
+import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const Explore = () => {
   const [foods, setFoods] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
   const [searchFilter, setSearchFilter] = useState(foods);
 
   const handleChange = (e) => {
     e.preventDefault();
-    const search = setSearchInput(e.target.value.toLowerCase());
+    setSearchInput(e.target.value);
     console.log(searchInput);
-       const filteredFoods = foods.filter(food => food.origin.toLowerCase().includes(search))
-    setSearchFilter(filteredFoods)
-    console.log(searchFilter)
-    
+    const filteredFoods = foods.filter((food) =>
+      food.origin.includes(searchInput)
+    );
+    setSearchFilter(filteredFoods);
+    console.log(searchFilter);
   };
 
   useEffect(() => {
@@ -50,7 +52,9 @@ const Explore = () => {
       <div>
         <ul>
           {searchFilter.map((element) => {
-            <li>{element.origin}</li>;
+            <ListGroup>
+              <ListGroup.Item>{element.origin}</ListGroup.Item>;
+            </ListGroup>;
           })}
         </ul>
       </div>
@@ -61,18 +65,18 @@ const Explore = () => {
         <ul>
           {foods.map((element, ind) => (
             <ul key={ind}>
-              <Card style={{ width: '30rem' }}>
+              <Card style={{ width: "30rem" }}>
                 <Link to={`/foods/${element._id}`}>
                   <button>
-                    {' '}
+                    {" "}
                     <Link
-  to={{
-    pathname: `/myList/${element._id}`,
-    state: { food: element }
-  }}
->
-  Add to your list
-</Link>
+                      to={{
+                        pathname: `/myList/${element._id}`,
+                        state: { food: element },
+                      }}
+                    >
+                      Add to your list
+                    </Link>
                   </button>
                   <div>
                     <li>
