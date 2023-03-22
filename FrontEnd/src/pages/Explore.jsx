@@ -3,17 +3,31 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../consts-data";
 import Card from "react-bootstrap/Card";
-// import { set } from 'mongoose';
+import { Link } from "react-router-dom";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const Explore = () => {
   const [foods, setFoods] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchInput, setSearchInput] = useState("");
+  const [searchFilter, setSearchFilter] = useState(foods);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+    console.log(searchInput);
+    const filteredFoods = foods.filter((food) =>
+      food.origin.includes(searchInput)
+    );
+    setSearchFilter(filteredFoods);
+    console.log(searchFilter);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${API_URL}/foods`);
+        console.log(res);
         const foodsArray = res.data.data;
         foodsArray.sort((a, z) => {
           return parseInt(z.name) - parseInt(a.name);
@@ -27,68 +41,71 @@ const Explore = () => {
     fetchData();
   }, []);
 
-  const onChange = (e) => {
-    setSearchInput(e.target.value);
-    console.log(e.target.value);
-  };
-
   return (
     <div>
-      <form className="formSearch">
-        <input
-          className="search"
-          type="text"
-          value={searchInput}
-          onChange={onChange}
-          placeholder="Country name"
-          name="origin"
-        />
-      </form>
+      <input
+        type="search"
+        placeholder="Search here"
+        onChange={handleChange}
+        value={searchInput}
+      />
+      <div>
+        <ul>
+          {searchFilter.map((element) => {
+            <ListGroup>
+              <ListGroup.Item>{element.origin}</ListGroup.Item>;
+            </ListGroup>;
+          })}
+        </ul>
+      </div>
+
       {isLoading ? (
         <p>Loading</p>
       ) : (
-        <ul className="food-card">
+        <ul>
           {foods.map((element, ind) => (
             <ul key={ind}>
               <Card style={{ width: "30rem" }}>
-                <div>
-                  <li>
-                    <Card.Img
-                      variant="top"
-                      src={element.foodUrl}
-                      alt="food image"
-                    />
-                  </li>
-                  <Card.Body>
+                <Link to={`/foods/${element._id}`}>
+                  <button>
+                    {" "}
+                    <Link
+                      to={{
+                        pathname: `/myList/${element._id}`,
+                        state: { food: element },
+                      }}
+                    >
+                      Add to your list
+                    </Link>
+                  </button>
+                  <div>
                     <li>
-                      <Card.Title>{element.name}</Card.Title>
+                      <Card.Img
+                        variant="top"
+                        src={element.foodUrl}
+                        alt="food image"
+                      />
                     </li>
-                    <div className="origin-card">
+                    <Card.Body>
                       <li>
-                        <Card.Text>{element.origin} - </Card.Text>
+                        <Card.Title>{element.name}</Card.Title>
                       </li>
-                      <li className="flag-card">
-                        <Card.Img
-                          variant="top"
-                          src={element.flagUrl}
-                          alt="flags"
-                        />
-                      </li>
+                      <div className="origin-card">
+                        <li>
+                          <Card.Text>{element.origin} - </Card.Text>
+                        </li>
 
-                      <li className="flag-card">
-                        <Card.Img
-                          variant="top"
-                          src={element.flag2Url}
-                          alt="flags"
-                        />
-                      </li>
-                    </div>
-                    <li>
-                      <Card.Text>{element.description}</Card.Text>
-                    </li>
-                  </Card.Body>
-                </div>
-                {/* <li>{element.reviews} reviews</li> */}
+                        <li className="flag-card">
+                          <Card.Img
+                            variant="top"
+                            src={element.flagUrl}
+                            alt="flags"
+                          />
+                        </li>
+                      </div>
+                    </Card.Body>
+                  </div>
+                </Link>
               </Card>
             </ul>
           ))}
