@@ -16,7 +16,7 @@ const foodData = {
       However, it didn’t gain much popularity until after World War II. In the United States, the first pizzeria was opened in New York City by Gennaro Lombardi in 1905, and since then it has become one of the most popular food items in the United States.
       In an ironic twist of fate, American-style pizza has been re-exported back to Italy, where it is has also gained in popularity today. In 2008, two Italian associations called Real Pizza and the Association of Neapolitan Pizza-makers introduced new regulations on what constitutes a true Neapolitan pizza.
       According to them, the real, legally-protected Neapolitan margherita should be made with exact amounts of mozzarella, salt, and tomatoes, and it should be baked in a wood-fired oven at 485°C. Today, there are numerous variations of this beloved dish throughout the world, from those with simple toppings such as ham, prosciutto, onions, and bell peppers, to unusual variations such as hot dog or hamburger pizza or decadent toppings such as white truffles, edible gold, lobster, and caviar.  `,
-      reviews: [],
+      reviews: ["this is pizza comment"],
     },
     {
       foodUrl:

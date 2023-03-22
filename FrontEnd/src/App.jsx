@@ -3,7 +3,7 @@ import HomePage from './pages/HomePage';
 import NavBar from './components/NavBar';
 import Register from './pages/Register';
 import Explore from './pages/Explore';
-import MyList from './pages/MyList';
+//import MyList from './pages/MyList';
 import Login from './pages/Login';
 import FoodPage from './pages/FoodPage';
 import './styling/main.scss';
@@ -15,7 +15,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/myList/:listedFoodId" element={<MyList />} />
+        {/* <Route path="/myList" element={<MyList />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/foods/:foodId" element={<FoodPage />} />
