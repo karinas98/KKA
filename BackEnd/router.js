@@ -5,7 +5,7 @@ import { auth } from './middleware/auth.js';
 import reviewController from './controllers/reviewController.js';
 import { body } from 'express-validator';
 import validate from './middleware/validate.js';
-//import listController from './controllers/listController.js';
+// import myListController from './controllers/myListController.js';
 
 const router = express.Router();
 
@@ -28,8 +28,9 @@ router
     validate,
     userController.register
   );
-//router.route('/list/:id').post(auth,listController.addToList)
+// router.route('/myList').post(auth, myListController.addFood);
 router.route('/login').post(userController.login);
+//router.route("/users").get(userController.getAllUsers)
 router.route('/foods/:foodId').post(auth, reviewController.createReview);
 router
   .route('/foods/:foodId/:reviewId')

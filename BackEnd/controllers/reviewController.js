@@ -52,14 +52,9 @@ const deleteReview = async (req, res, next) => {
     if (req.currentUser.role !== 'admin') {
       return res.status(401).json({ message: 'Unauthorized' });
     }
-    // const foundReview = findFood.review.find(
-    //   (review) => review.id === reviewId
-    // );
-    // foundReview.remove();
-    // await findFood.save();
-     findFood.reviews = findFood.reviews.filter(
-       (review) => review.id !== reviewId
-     );
+    findFood.reviews = findFood.reviews.filter(
+      (review) => review.id !== reviewId
+    );
     await findFood.save();
     return res.status(200).json({ message: 'Review succesfully deleted' });
   } catch (err) {

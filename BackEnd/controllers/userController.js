@@ -3,6 +3,15 @@ import bcrypt from 'bcrypt';
 import { JWT_SECRET } from '../consts.js';
 import jwt from 'jsonwebtoken';
 
+// const getAllUsers = async (req, res, next) => {
+//   try {
+//     const users = await User.find();
+//     res.status(200).json({ success: true, data: users });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
 const register = async (req, res, next) => {
   const newUser = req.body;
   try {
@@ -20,11 +29,9 @@ const register = async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     newUser.password = await bcrypt.hash(newUser.password, salt);
     await User.create(newUser);
-    return res
-      .status(200)
-      .json({
-        message: `User succesfully registered with ${newUser.password}`,
-      });
+    return res.status(200).json({
+      message: `User succesfully registered with ${newUser.password}`,
+    });
   } catch (err) {
     next(err);
   }

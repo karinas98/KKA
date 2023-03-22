@@ -9,6 +9,9 @@ const reviews=()=>{
     const newComment = { name, comment };
     setComments([...comments, newComment]);
     event.target.reset();
+    //const res = await axios.get(`${API_URL}/foods`);
+
+
   }
   return (
     <div>

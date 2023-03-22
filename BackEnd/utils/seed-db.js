@@ -23,6 +23,7 @@ const seedingData = {
       userName: 'User',
       password: await hashPassword('userPassword'),
       role: 'user',
+      list:[],
     },
   ],
 };

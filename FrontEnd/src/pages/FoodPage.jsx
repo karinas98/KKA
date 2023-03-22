@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { API_URL } from '../consts-data';
-import reviews from './Review';
 
 const FoodPage = () => {
+  // const onChangeHandler = (e) => {
+  //   setComment(e.target.value);
+  // };
   const [food, setFood] = useState({});
   const { foodId } = useParams();
   useEffect(() => {
@@ -12,6 +14,7 @@ const FoodPage = () => {
       try {
         const res = await axios.get(`${API_URL}/foods/${foodId}`);
         setFood(res.data.data);
+        console.log('hello');
       } catch (err) {
         console.log(err);
       }
@@ -32,13 +35,10 @@ const FoodPage = () => {
           <li>
             <img src={food.foodUrl} />
           </li>
+          <li>
+            <p>{food.description}</p>
+          </li>
         </div>
-        <li>
-          <p>{food.description}</p>
-        </li>
-        <li>
-          <p>{reviews}</p>
-        </li>
       </ul>
     </div>
   );

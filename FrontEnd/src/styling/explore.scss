@@ -18,3 +18,22 @@
   gap: 10px;
   align-items: center;
 }
+.search-form {
+  margin: 20px;
+}
+.input-search {
+  padding: 10px;
+  width: 20em;
+}
+.dropdown-search {
+  display: flex;
+  align-items: center;
+}
+.list-icon {
+  border-style: none;
+  width: 2em;
+}
+.list-btn {
+  background-color: transparent;
+  border: none;
+}
