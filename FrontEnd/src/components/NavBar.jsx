@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+
+
 const NavBar = () => {
   
   const navigationLinks = [
@@ -57,6 +59,7 @@ const NavBar = () => {
             </li>
           </>
         )}
+    
       </ul>
     </nav>
   );
