@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -7,14 +8,16 @@ import { Link } from 'react-router-dom';
 //import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 
+
 const Explore = () => {
   const [foods, setFoods] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
   const [searchFilter, setSearchFilter] = useState(foods);
 
   const handleChange = async (e) => {
     e.preventDefault();
+
     const inputValue = e.target.value;
     setSearchInput(inputValue);
     console.log(inputValue);
@@ -33,6 +36,7 @@ const Explore = () => {
       setSearchFilter(filteredFoods);
       console.log(searchFilter);
     }
+
   };
 
   // const addToMyList = async (foodId) => {
@@ -71,6 +75,7 @@ const Explore = () => {
 
   return (
     <div>
+
       <form className="search-form">
         <input
           className="input-search"
@@ -90,14 +95,21 @@ const Explore = () => {
           </Dropdown.Item>
         ))}
       </form>
+
+   
+
+
       {isLoading ? (
         <p>Loading</p>
       ) : (
         <ul>
           {foods.map((element, ind) => (
             <ul key={ind}>
-              <Card style={{ width: '30rem' }}>
+              <Card style={{ width: "30rem" }}>
                 <Link to={`/foods/${element._id}`}>
+
+
+
                   <div>
                     <li>
                       <Card.Img
