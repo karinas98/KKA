@@ -5,8 +5,8 @@ import Register from './pages/Register';
 import Explore from './pages/Explore';
 import MyList from './pages/MyList';
 import Login from './pages/Login';
+import FoodPage from './pages/FoodPage';
 import './styling/main.scss';
-
 
 const App = () => {
   return (
@@ -15,11 +15,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/mylist" element={<MyList />} />
+        <Route path="/myList/:listedFoodId" element={<MyList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-     
-        
+        <Route path="/foods/:foodId" element={<FoodPage />} />
       </Routes>
     </div>
   );
