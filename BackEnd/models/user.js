@@ -5,6 +5,11 @@ const userSchema = mongoose.Schema({
     userName: { type: String, required: true },
     password: { type: String, required: true },
     role: { type: String, enum:["admin","user"], default:"user"},
+    list: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: 'Food',
+      default: [],
+    },
   });
 
    export default mongoose.model("User", userSchema)

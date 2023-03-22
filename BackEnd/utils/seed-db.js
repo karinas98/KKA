@@ -11,7 +11,6 @@ const hashPassword = async (plainTxtPassword) => {
 };
 
 const seedingData = {
-  foodData,
   users: [
     {
       email: 'admin@gmail.com',
@@ -30,12 +29,12 @@ const seedingData = {
 
 const seedDb = async () => {
   await connectToDb();
-   await mongoose.connection.db.dropDatabase();
+  await mongoose.connection.db.dropDatabase();
   console.log('Database connected!');
   await Food.create(foodData.foods);
   await User.create(seedingData.users);
   console.log(`Succesfully created ${seedingData.users}`);
-  console.log(`Succesfully created ${seedingData.foods}`);
+  console.log(`Succesfully created ${foodData.foods}`);
   await mongoose.disconnect();
 };
 seedDb();
