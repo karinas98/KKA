@@ -7,6 +7,7 @@ import MyList from './pages/MyList';
 import Login from './pages/Login';
 import './styling/main.scss';
 
+
 const App = () => {
   return (
     <div className="App">
@@ -17,6 +18,8 @@ const App = () => {
         <Route path="/mylist" element={<MyList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+     
+        
       </Routes>
     </div>
   );

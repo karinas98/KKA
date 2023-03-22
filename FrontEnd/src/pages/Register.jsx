@@ -29,7 +29,7 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (formData.password.length < 7) {
+      if (formData.password.length <7) {
         setError('password must be at least 7 characters');
         return;
       }
