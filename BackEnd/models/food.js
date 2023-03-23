@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const reviewSchema = mongoose.Schema(
   {
     text: { type: String, required: true },
     //stars:{type: Integer, required: true}
-    createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' },
+    createdBy: { type: mongoose.Schema.ObjectId, ref: "User" },
   },
   { timestamps: true }
 );
@@ -30,4 +30,4 @@ const foodSchema = mongoose.Schema(
 );
 
 // export const FoodModel=mongoose.model("Food", foodSchema)
-export default mongoose.model('Food', foodSchema);
+export default mongoose.model("Food", foodSchema);
