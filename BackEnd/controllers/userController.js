@@ -1,16 +1,16 @@
-import User from '../models/user.js';
-import bcrypt from 'bcrypt';
-import { JWT_SECRET } from '../consts.js';
-import jwt from 'jsonwebtoken';
+import User from "../models/user.js";
+import bcrypt from "bcrypt";
+import { JWT_SECRET } from "../consts.js";
+import jwt from "jsonwebtoken";
 
-// const getAllUsers = async (req, res, next) => {
-//   try {
-//     const users = await User.find();
-//     res.status(200).json({ success: true, data: users });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+const getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({ success: true, data: users });
+  } catch (err) {
+    next(err);
+  }
+};
 
 const register = async (req, res, next) => {
   const newUser = req.body;
@@ -19,10 +19,10 @@ const register = async (req, res, next) => {
     if (userExist) {
       return res
         .status(400)
-        .json({ message: 'User already exists', data: { userExist } });
+        .json({ message: "User already exists", data: { userExist } });
     }
     if (newUser.password !== newUser.confirmPassword) {
-      return res.status(400).json({ message: 'Passwords do not match' });
+      return res.status(400).json({ message: "Passwords do not match" });
     }
     //const createdUser = await User.create(newUser)
     //const payload = { id }
@@ -45,14 +45,14 @@ const login = async (req, res, next) => {
     if (!userAlreadyExist) {
       return res
         .status(400)
-        .json({ message: 'User not found', data: userAlreadyExist });
+        .json({ message: "User not found", data: userAlreadyExist });
     }
     const comparePasswords = await bcrypt.compare(
       password,
       userAlreadyExist.password
     );
     if (!comparePasswords) {
-      return res.status(400).json({ message: 'User not found' });
+      return res.status(400).json({ message: "User not found" });
     }
     const payload = {
       id: userAlreadyExist.id,
@@ -69,4 +69,5 @@ const login = async (req, res, next) => {
 export default {
   register,
   login,
+  getAllUsers,
 };

@@ -1,13 +1,11 @@
-
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { API_URL } from '../consts-data';
-import Card from 'react-bootstrap/Card';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { API_URL } from "../consts-data";
+import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 //import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
-
+import Dropdown from "react-bootstrap/Dropdown";
 
 const Explore = () => {
   const [foods, setFoods] = useState([]);
@@ -27,7 +25,7 @@ const Explore = () => {
     foodsArray.sort((a, z) => {
       return parseInt(z.name) - parseInt(a.name);
     });
-    if (inputValue.trim() === '') {
+    if (inputValue.trim() === "") {
       setSearchFilter([]);
     } else {
       setFoods(foodsArray);
@@ -37,18 +35,15 @@ const Explore = () => {
       setSearchFilter(filteredFoods);
       console.log(searchFilter);
     }
-
   };
 
-  // const addToMyList = async (foodId) => {
-  //   try {
-  //     await axios.post(`${API_URL}/myList`, { foodId });
-  //     // Display a success message or update the list state
-  //   } catch (error) {
-  //     console.error(error);
-  //     // Display an error message
-  //   }
-  // };
+  const addToMyList = async (foodId) => {
+    try {
+      await axios.post(`${API_URL}/myList`, { foodId });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // const onClick = async () => {
   //   const res = await axios.get(`${API_URL}/users`);
@@ -77,16 +72,18 @@ const Explore = () => {
   return (
     <div>
 
+    <div className="explore">
+
       <form className="search-form">
         <input
-          className="input-search"
-          type="search"
+          className="input-search icon-right"
+          type="text"
           placeholder="Search here"
           onChange={handleChange}
           value={searchInput}
         />
         {searchFilter.map((element) => (
-          <Dropdown.Item key={element._id} href={`#/foods/${element._id}`}>
+          <Dropdown.Item key={element._id} to={`/foods/${element._id}`}>
             <Link to={`/foods/${element._id}`}>
               <span className="dropdown-search">
                 <img className="flag-card" src={element.flagUrl} />
@@ -97,20 +94,14 @@ const Explore = () => {
         ))}
       </form>
 
-   
-
-
       {isLoading ? (
         <p>Loading</p>
       ) : (
-        <ul>
+        <ul className="food-card">
           {foods.map((element, ind) => (
             <ul key={ind}>
               <Card style={{ width: "30rem" }}>
                 <Link to={`/foods/${element._id}`}>
-
-
-
                   <div>
                     <li>
                       <Card.Img
@@ -120,11 +111,15 @@ const Explore = () => {
                       />
                     </li>
                     <Card.Body>
-                      <div>
+                      <div className="card-header">
                         <li>
                           <Card.Title>{element.name}</Card.Title>
                         </li>
-                        <button>
+
+                        <button className="list-btn" onClick={() => addToMyList(element._id)}>
+
+                        
+
                           <img
                             className="list-icon"
                             src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679488194/icons8-add-to-list-64_kuuyn6.png"
@@ -132,16 +127,11 @@ const Explore = () => {
                         </button>
                       </div>
                       <div className="origin-card">
-                        <li>
-                          <Card.Text>{element.origin} - </Card.Text>
-                        </li>
-
                         <li className="flag-card">
-                          <Card.Img
-                            variant="top"
-                            src={element.flagUrl}
-                            alt="flags"
-                          />
+                          <Card.Img src={element.flagUrl} alt="flags" />
+                        </li>
+                        <li>
+                          <Card.Text>{element.origin} </Card.Text>
                         </li>
                       </div>
                     </Card.Body>
