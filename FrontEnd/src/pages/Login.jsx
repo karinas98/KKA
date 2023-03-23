@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-
 const Login = () => {
   // const initialFormData = {
   //   userName: "",
@@ -32,7 +31,6 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-
       const response = await axios.post(`${API_URL}/login`, formData);
       console.log("Response:", response);
       const { data } = response;
@@ -40,10 +38,6 @@ const Login = () => {
       const token = data.token;
       localStorage.setItem("token", token);
       //axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-      const { data } = await axios.post(`${API_URL}/login`, formData);
-      console.log(data.token);
-      localStorage.setItem("token", data.token);
 
       //this code below set default headers
       //   axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
@@ -56,8 +50,6 @@ const Login = () => {
     }
   };
   return (
-
-
     <div className="main-form">
       <div className="back-form"></div>
       <span className="form-body">
