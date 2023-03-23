@@ -5,24 +5,25 @@ import { API_URL } from '../consts-data';
 
 
 const FoodPage = () => {
-   const [comment, setComment] = useState('');
-   const [comments, setComments] = useState([]);
+   const [review, SetReview] = useState('');
+   const [reviews, setReviews] = useState([]);
    const onChangeHandler = (e) => {
-     setComment(e.target.value);
+     SetReview(e.target.value);
    };
    const onClickChandler = () => {
-     setComments((elem) => [...elem, comment]);
-     setComment('');
+     setReviews((elem) => [...elem, review]);
+     SetReview('');
    };
  
   const [food, setFood] = useState({});
   const { foodId } = useParams();
-  const {reviewId}=useParams();
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${API_URL}/foods/${foodId}`);
         setFood(res.data.data);
+        review(res.data.review)
         console.log('hello');
       } catch (err) {
         console.log(err);
@@ -44,16 +45,16 @@ const FoodPage = () => {
           <li>
             <img src={food.foodUrl} />
           </li>
-          {/* <li>
-            <img src={food.reviewId} />
-          </li> */}
+          <li>
+            <p>{food.reviews}</p>
+          </li>
           <div className="main-container">
-            {comments.map((element) => (
-              <div className="comment-container">{element}</div>
+            {reviews.map((element) => (
+              <div className="review-container">{element}</div>
             ))}
-            <div className="comment-flexbox">
-              <h3 className="comment text">Comment</h3>
-              <textarea value={comment} onChange={onChangeHandler}></textarea>
+            <div className="review-flexbox">
+              <h3 className="review text">Leave a Comment</h3>
+              <textarea value={review.review} onChange={onChangeHandler}></textarea>
               <br></br>
               <button onClick={onClickChandler}>Submit</button>
             </div>
