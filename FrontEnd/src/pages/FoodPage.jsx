@@ -17,12 +17,13 @@ const FoodPage = () => {
  
   const [food, setFood] = useState({});
   const { foodId } = useParams();
-  const {reviewId}=useParams();
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${API_URL}/foods/${foodId}Ï`);
+        const res = await axios.get(`${API_URL}/foods/${foodId}`);
         setFood(res.data.data);
+        review(res.data.review)
         console.log('hello');
       } catch (err) {
         console.log(err);
@@ -44,16 +45,16 @@ const FoodPage = () => {
           <li>
             <img src={food.foodUrl} />
           </li>
-          {/* <li>
-            <img src={food.reviewId} />
-          </li> */}
+          <li>
+            <p>{food.reviews}</p>
+          </li>
           <div className="main-container">
             {reviews.map((element) => (
               <div className="review-container">{element}</div>
             ))}
             <div className="review-flexbox">
-              <h3 className="review text">Comment</h3>
-              <textarea value={review} onChange={onChangeHandler}></textarea>
+              <h3 className="review text">Leave a Comment</h3>
+              <textarea value={review.review} onChange={onChangeHandler}></textarea>
               <br></br>
               <button onClick={onClickChandler}>Submit</button>
             </div>
