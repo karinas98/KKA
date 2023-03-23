@@ -40,7 +40,7 @@ const NavBar = () => {
         {loggedIn ? (
           <>
             <li>
-              <Link to="/myList">My List</Link>
+              <Link to="/my-list">My List</Link>
             </li>
             <li className="nav-item" onClick={onLogout}>
               <Link to="/logout">Logout</Link>

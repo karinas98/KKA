@@ -3,29 +3,28 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../consts-data";
 
-
 const FoodPage = () => {
-   const [review, SetReview] = useState('');
-   const [reviews, setReviews] = useState([]);
-   const onChangeHandler = (e) => {
-     SetReview(e.target.value);
-   };
-   const onClickChandler = () => {
-     setReviews((elem) => [...elem, review]);
-     SetReview('');
-   };
- 
+  const [review, SetReview] = useState("");
+  const [reviews, setReviews] = useState([]);
+  const onChangeHandler = (e) => {
+    SetReview(e.target.value);
+  };
+  const onClickChandler = () => {
+    setReviews((elem) => [...elem, review]);
+    SetReview("");
+  };
+
   const [food, setFood] = useState({});
   const { foodId } = useParams();
- 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${API_URL}/foods/${foodId}`);
+        // const res2 = await axios.post(`${API_URL}/foods/${foodId}`);
         setFood(res.data.data);
-
-        review(res.data.review)
-        
+        // setReviews(res2.data.data);
+        // console.log(res2.data.data);
       } catch (err) {
         console.log(err);
       }
@@ -52,9 +51,7 @@ const FoodPage = () => {
           </span>
 
           <li>
-
             <p className="inv-desc">{food.description}</p>
-
           </li>
           <div className="main-container">
             {reviews.map((element) => (

@@ -12,7 +12,8 @@ const Explore = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [searchFilter, setSearchFilter] = useState(foods);
-
+  const [error, setError] = useState("");
+  const [confirmMessage, setConfirmMessage] = useState("");
   const handleChange = async (e) => {
     e.preventDefault();
 
@@ -39,9 +40,12 @@ const Explore = () => {
 
   const addToMyList = async (foodId) => {
     try {
-      await axios.post(`${API_URL}/myList`, { foodId });
-    } catch (error) {
-      console.error(error);
+      const res = await axios.post(`${API_URL}/my-list/${foodId}`);
+      setConfirmMessage(res.data.message);
+      console.log(confirmMessage);
+    } catch (err) {
+      console.log(error);
+      setError(err.response.data.message);
     }
   };
 
@@ -71,6 +75,8 @@ const Explore = () => {
 
   return (
     <div className="explore">
+      {confirmMessage && <h4 className="success">{confirmMessage}</h4>}
+      {error && <h4 className="error">{error}</h4>}
       <form className="search-form">
         <input
           className="input-search icon-right"
@@ -112,16 +118,6 @@ const Explore = () => {
                         <li>
                           <Card.Title>{element.name}</Card.Title>
                         </li>
-
-                        <button
-                          className="list-btn"
-                          onClick={() => addToMyList(element._id)}
-                        >
-                          <img
-                            className="list-icon"
-                            src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679488194/icons8-add-to-list-64_kuuyn6.png"
-                          />
-                        </button>
                       </div>
                       <div className="origin-card">
                         <li className="flag-card">
@@ -134,6 +130,16 @@ const Explore = () => {
                     </Card.Body>
                   </div>
                 </Link>
+
+                <button
+                  className="list-btn"
+                  onClick={() => addToMyList(element._id)}
+                >
+                  <img
+                    className="list-icon"
+                    src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679488194/icons8-add-to-list-64_kuuyn6.png"
+                  />
+                </button>
               </Card>
             </ul>
           ))}

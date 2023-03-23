@@ -6,13 +6,6 @@ const addFood = async (req, res, next) => {
   const userId = req.currentUser.id;
 
   try {
-    // if (userId != req.currentUser.id) {
-    //   return res.status(404).json({
-    //     success: false,
-    //     message: "You have to be logged in to add something to your list",
-    //   });
-    // }
-
     const user = await User.findById(userId);
     if (!user) {
       return res
@@ -41,7 +34,7 @@ const addFood = async (req, res, next) => {
     user.list.push(food);
     await user.save();
 
-    res.status(200).json({ success: true, data: user });
+    res.status(200).json({ message: "Food succesfully added", data: user });
   } catch (err) {
     next(err);
   }
@@ -51,24 +44,21 @@ const grabList = async (req, res, next) => {
   const userId = req.currentUser.id;
   const user = await User.findById(userId);
   try {
-    if (userId != req.currentUser.id) {
-      return res.status(404).json({
-        success: false,
-        message: "You have to be logged in to get your list",
-      });
-    }
-
     if (!user) {
       return res
         .status(404)
         .json({ success: false, message: "User not found" });
     }
     const userList = user.list;
-    res.status(200).json({ success: true, users: userList });
+    res.status(200).json({ success: true, foods: userList });
   } catch (err) {
     next(err);
   }
 };
+
+// const deleteList = async (req, res, next) => {
+//   const userId = req.currentUser.id;
+// }
 
 export default {
   addFood,
