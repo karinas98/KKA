@@ -1,21 +1,19 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { API_URL } from '../consts-data';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import axios from "axios";
+import { API_URL } from "../consts-data";
+import { useNavigate } from "react-router-dom";
 
-const login = () => {
+const Login = () => {
   // const initialFormData = {
   //   userName: "",
   //   email: "",
   //   password: "",
   //   confirmPassword: "",
   // };
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
-
-    email: '',
-    password: '',
-
+    email: "",
+    password: "",
   });
 
   const onChange = (e) => {
@@ -23,29 +21,30 @@ const login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const  {data}  = await axios.post(`${API_URL}/login`, formData);
-      console.log(data.token);
-      localStorage.setItem("token", data.token)
-      
-      //this code below set default headers
-    //   axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
+      const response = await axios.post(`${API_URL}/login`, formData);
+      console.log("Response:", response);
+      const { data } = response;
+      console.log("Token:", data.token);
+      const token = data.token;
+      localStorage.setItem("token", token);
+      //axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       setFormData(formData);
-      navigate("/")
+      navigate("/");
     } catch (err) {
+      console.error("Error:", err);
       setError(err.response.data.message);
     }
   };
   return (
     <div>
-          <h1>Login</h1>
+      <h1>Login</h1>
       {error && <h4>{error}</h4>}
       <form onSubmit={onSubmit}>
-    
         <input
           placeholder="Email"
           name="email"
@@ -60,10 +59,8 @@ const login = () => {
         />
         <button type="submit">login</button>
       </form>
-
-    
     </div>
   );
 };
 
-export default login;
+export default Login;
