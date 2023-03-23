@@ -7,13 +7,15 @@ nav {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin: 3em 0em 3em 0em;
+  margin: 1.5em 0em 1.5em 0em;
+  height: 10vh;
 }
 li {
   list-style: none;
 }
 ul {
-  gap: 2em;
+  gap: 2.5em;
+  margin-bottom: 0 !important;
 }
 
 .primary-nav {
@@ -24,8 +26,14 @@ ul {
 .secondary-nav {
   display: flex;
   justify-content: flex-end;
-  margin-right: 4em;
+  margin-right: 7em;
 }
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+  color: black !important;
+  cursor: pointer;
+  font-weight: 600;
+}
+a:hover {
+  color: rgb(44, 103, 104) !important;
 }
