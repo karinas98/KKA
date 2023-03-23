@@ -51,12 +51,12 @@ const grabList = async (req, res, next) => {
   const userId = req.currentUser.id;
   const user = await User.findById(userId);
   try {
-    // if (userId != req.currentUser.id) {
-    //   return res.status(404).json({
-    //     success: false,
-    //     message: "You have to be logged in to get your list",
-    //   });
-    // }
+    if (userId != req.currentUser.id) {
+      return res.status(404).json({
+        success: false,
+        message: "You have to be logged in to get your list",
+      });
+    }
 
     if (!user) {
       return res
@@ -64,7 +64,7 @@ const grabList = async (req, res, next) => {
         .json({ success: false, message: "User not found" });
     }
     const userList = user.list;
-    res.status(200).json({ success: true, data: userList });
+    res.status(200).json({ success: true, users: userList });
   } catch (err) {
     next(err);
   }

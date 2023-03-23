@@ -7,38 +7,40 @@ const MyList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        const axiosInstance = axios.create({
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        try {
-          const res = await axiosInstance.get(`${API_URL}/myList`);
-          setList(res.data);
-        } catch (err) {
-          console.log(err);
-        }
-      }
-      //   try {
-      //     const res = await axios.get(`${API_URL}/myList`);
-      //     console.log(res);
-      //     setList(res.data);
-      //   } catch (err) {
-      //     console.log(err);
+      //   const token = localStorage.getItem("token");
+      //   if (token) {
+      //     const axiosInstance = axios.create({
+      //       headers: {
+      //         Authorization: `Bearer ${token}`,
+      //       },
+      //     });
+      //     try {
+      //       const res = await axiosInstance.get(`${API_URL}/myList`);
+      //       setList(res.data);
+      //     } catch (err) {
+      //       console.log(err);
+      //     }
       //   }
+      try {
+        //const data = await axios.get();
+        const res = await axios.get(`${API_URL}/users`);
+        //console.log(res.data.data[4].list);
+        console.log(res.data.data[1].list[1]);
+        setList(res.data.data[1].list[1]);
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchData();
   }, []);
 
   return (
     <div>
-      <h1>My list:</h1>
+      <h1>My list:{list.name}</h1>
       <ul>
-        {list.map((item) => (
+        {/* {list.map((item) => (
           <li key={item._id}>{item.name}</li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );
