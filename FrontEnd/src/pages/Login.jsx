@@ -2,10 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../consts-data";
 import { useNavigate } from "react-router-dom";
+
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-const login = () => {
+
+const Login = () => {
   // const initialFormData = {
   //   userName: "",
   //   email: "",
@@ -30,19 +32,32 @@ const login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
+
+      const response = await axios.post(`${API_URL}/login`, formData);
+      console.log("Response:", response);
+      const { data } = response;
+      console.log("Token:", data.token);
+      const token = data.token;
+      localStorage.setItem("token", token);
+      //axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
       const { data } = await axios.post(`${API_URL}/login`, formData);
       console.log(data.token);
       localStorage.setItem("token", data.token);
 
       //this code below set default headers
       //   axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
+
       setFormData(formData);
       navigate("/");
     } catch (err) {
+      console.error("Error:", err);
       setError(err.response.data.message);
     }
   };
   return (
+
+
     <div className="main-form">
       <div className="back-form"></div>
       <span className="form-body">
@@ -92,4 +107,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

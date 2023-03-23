@@ -1,14 +1,11 @@
-import { Link } from 'react-router-dom';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-
-
+import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const NavBar = () => {
-  
   const navigationLinks = [
-    { title: 'Home', slug: '/' },
-    { title: 'Explore', slug: '/explore' },
+    { title: "Home", slug: "/" },
+    { title: "Explore", slug: "/explore" },
   ];
 
   const [loggedIn, setLoggedIn] = useState(false);
@@ -17,15 +14,15 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoggedIn(localStorage.getItem('token') ? true : false);
-    console.log('Location updated!');
+    setLoggedIn(localStorage.getItem("token") ? true : false);
+    console.log("Location updated!");
     console.log({ location });
     console.log({ navigate });
   }, [location]);
 
   const onLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/');
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   return (
@@ -59,7 +56,6 @@ const NavBar = () => {
             </li>
           </>
         )}
-    
       </ul>
     </nav>
   );
