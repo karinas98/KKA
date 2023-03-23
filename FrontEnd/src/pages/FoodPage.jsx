@@ -3,12 +3,21 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { API_URL } from '../consts-data';
 
+
 const FoodPage = () => {
-  // const onChangeHandler = (e) => {
-  //   setComment(e.target.value);
-  // };
+   const [comment, setComment] = useState('');
+   const [comments, setComments] = useState([]);
+   const onChangeHandler = (e) => {
+     setComment(e.target.value);
+   };
+   const onClickChandler = () => {
+     setComments((elem) => [...elem, comment]);
+     setComment('');
+   };
+ 
   const [food, setFood] = useState({});
   const { foodId } = useParams();
+  const {reviewId}=useParams();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,9 +44,20 @@ const FoodPage = () => {
           <li>
             <img src={food.foodUrl} />
           </li>
-          <li>
-            <p>{food.description}</p>
-          </li>
+          {/* <li>
+            <img src={food.reviewId} />
+          </li> */}
+          <div className="main-container">
+            {comments.map((element) => (
+              <div className="comment-container">{element}</div>
+            ))}
+            <div className="comment-flexbox">
+              <h3 className="comment text">Comment</h3>
+              <textarea value={comment} onChange={onChangeHandler}></textarea>
+              <br></br>
+              <button onClick={onClickChandler}>Submit</button>
+            </div>
+          </div>
         </div>
       </ul>
     </div>
