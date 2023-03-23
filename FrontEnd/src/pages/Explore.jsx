@@ -37,15 +37,13 @@ const Explore = () => {
     }
   };
 
-  // const addToMyList = async (foodId) => {
-  //   try {
-  //     await axios.post(`${API_URL}/myList`, { foodId });
-  //     // Display a success message or update the list state
-  //   } catch (error) {
-  //     console.error(error);
-  //     // Display an error message
-  //   }
-  // };
+  const addToMyList = async (foodId) => {
+    try {
+      await axios.post(`${API_URL}/myList`, { foodId });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // const onClick = async () => {
   //   const res = await axios.get(`${API_URL}/users`);
@@ -72,7 +70,10 @@ const Explore = () => {
   }, []);
 
   return (
+    <div>
+
     <div className="explore">
+
       <form className="search-form">
         <input
           className="input-search icon-right"
@@ -82,7 +83,7 @@ const Explore = () => {
           value={searchInput}
         />
         {searchFilter.map((element) => (
-          <Dropdown.Item key={element._id} href={`#/foods/${element._id}`}>
+          <Dropdown.Item key={element._id} to={`/foods/${element._id}`}>
             <Link to={`/foods/${element._id}`}>
               <span className="dropdown-search">
                 <img className="flag-card" src={element.flagUrl} />
@@ -114,7 +115,11 @@ const Explore = () => {
                         <li>
                           <Card.Title>{element.name}</Card.Title>
                         </li>
-                        <button className="list-btn">
+
+                        <button className="list-btn" onClick={() => addToMyList(element._id)}>
+
+                        
+
                           <img
                             className="list-icon"
                             src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679488194/icons8-add-to-list-64_kuuyn6.png"

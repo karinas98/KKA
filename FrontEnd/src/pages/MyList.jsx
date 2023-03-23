@@ -1,48 +1,47 @@
-// import { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import { API_URL } from '../consts-data';
-// import { useParams } from 'react-router-dom';
-// //import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URL } from "../consts-data";
 
-// const MyList = () => {
-//   //const location = useLocation();
-//   const [listedFoods, setListedFoods] = useState([]);
-//   //const { listedFoodId } = useParams();
-//   useEffect(() => {
-//     const getList = async () => {
-//       try {
-//         const res = await axios.get(`${API_URL}/foods/${foodId}`);
-//         setListedFoods([...listedFoods, res.data.data]);
-//         console.log(res);
-//         console.log(listedFoods);
-//       } catch (err) {
-//         console.log(err);
-//       }
-//     };
+const MyList = () => {
+  const [list, setList] = useState([]);
 
-//     getList();
-//   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const axiosInstance = axios.create({
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        try {
+          const res = await axiosInstance.get(`${API_URL}/myList`);
+          setList(res.data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      //   try {
+      //     const res = await axios.get(`${API_URL}/myList`);
+      //     console.log(res);
+      //     setList(res.data);
+      //   } catch (err) {
+      //     console.log(err);
+      //   }
+    };
+    fetchData();
+  }, []);
 
-//   return (
-//     <div>
-//       {listedFoods.map((food) => (
-//         <ul key={food._id}>
-//           <li>
-//             <h1>{food.name}</h1>
-//           </li>
-//           <li>
-//             <h2>{food.origin}</h2>
-//           </li>
-//           <li>
-//             <img src={food.foodUrl} alt="food" />
-//           </li>
-//           <li>
-//             <p>{food.description}</p>
-//           </li>
-//         </ul>
-//       ))}
-//     </div>
-//   );
-// };
+  return (
+    <div>
+      <h1>My list:</h1>
+      <ul>
+        {list.map((item) => (
+          <li key={item._id}>{item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-// export default MyList;
+export default MyList;
