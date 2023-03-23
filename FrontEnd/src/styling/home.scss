@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+
+.home-header {
+  display: flex;
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    url("https://res.cloudinary.com/de9zdtobn/image/upload/v1679589498/Culture_Food_and_Taste_vdnutn.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+  text-align: center;
+  justify-content: center;
+  background-position-y: center;
+}
+.headline {
+  color: white;
+  font-weight: 700;
+  font-size: 50px;
+}
+.head-author {
+  font-family: "Courgette", cursive;
+  margin-top: 1em;
+  font-weight: 400;
+  color: white;
+}
+.home-body {
+  height: 800px;
+}
