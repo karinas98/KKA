@@ -3,18 +3,29 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../consts-data";
 
+
 const FoodPage = () => {
-  // const onChangeHandler = (e) => {
-  //   setComment(e.target.value);
-  // };
+   const [review, SetReview] = useState('');
+   const [reviews, setReviews] = useState([]);
+   const onChangeHandler = (e) => {
+     SetReview(e.target.value);
+   };
+   const onClickChandler = () => {
+     setReviews((elem) => [...elem, review]);
+     SetReview('');
+   };
+ 
   const [food, setFood] = useState({});
   const { foodId } = useParams();
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${API_URL}/foods/${foodId}`);
         setFood(res.data.data);
-        console.log("hello");
+
+        review(res.data.review)
+        
       } catch (err) {
         console.log(err);
       }
@@ -41,8 +52,21 @@ const FoodPage = () => {
           </span>
 
           <li>
+
             <p className="inv-desc">{food.description}</p>
+
           </li>
+          <div className="main-container">
+            {reviews.map((element) => (
+              <div className="review-container">{element}</div>
+            ))}
+            <div className="review-flexbox">
+              <h3 className="review text">Leave a Comment</h3>
+              <textarea value={review.review} onChange={onChangeHandler}></textarea>
+              <br></br>
+              <button onClick={onClickChandler}>Submit</button>
+            </div>
+          </div>
         </div>
       </ul>
     </div>

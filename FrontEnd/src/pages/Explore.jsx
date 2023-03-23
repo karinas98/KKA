@@ -21,6 +21,7 @@ const Explore = () => {
     console.log(inputValue);
     const res = await axios.get(`${API_URL}/foods`);
     const foodsArray = res.data.data;
+    console.log(res)
     foodsArray.sort((a, z) => {
       return parseInt(z.name) - parseInt(a.name);
     });
