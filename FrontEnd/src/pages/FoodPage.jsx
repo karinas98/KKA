@@ -54,7 +54,7 @@ const FoodPage = () => {
             ))}
             <div className="review-flexbox">
               <h3 className="review text">Leave a Comment</h3>
-              <textarea value={review.review} onChange={onChangeHandler}></textarea>
+              <textarea value={review} onChange={onChangeHandler}></textarea>
               <br></br>
               <button onClick={onClickChandler}>Submit</button>
             </div>
