@@ -3,7 +3,7 @@ const foodData = {
     {
       foodUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679144911/a99232294df34cc49be27526f6de291d_qz7jaj.jpg",
-      name: "01    Pizza",
+      name: "01.    Pizza",
       origin: "Naples, Italy, 1889",
       flagUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679145107/255px-Flag_of_Italy.svg_z2fmpy.png",
@@ -21,7 +21,7 @@ const foodData = {
     {
       foodUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679149505/fde953e5aa504e8c83a84691582b0399_ag1duf.jpg",
-      name: "02    Sushi",
+      name: "02.    Sushi",
       origin: "Japan, 1824",
       flagUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679149599/1200px-Flag_of_Japan.svg_qsr5tm.png",
@@ -35,7 +35,7 @@ const foodData = {
     {
       foodUrl:
         "https://cdn.tasteatlas.com//Images/Dishes/223d2928b1e04701854f387c30d940f0.jpg?w=905&h=510",
-      name: "03    Burger",
+      name: "03.    Burger",
       origin: "United States of America, 1885",
       flagUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679150123/1200px-Flag_of_the_United_States.svg_zy5cid.png",
@@ -50,7 +50,7 @@ const foodData = {
     {
       foodUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679150161/b6b9680a32c84a9381a1ea5f5e529698_o4ntnq.jpg",
-      name: "04    Ramen",
+      name: "04.    Ramen",
       origin: "Japan, 1910",
       flagUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679149599/1200px-Flag_of_Japan.svg_qsr5tm.png",
@@ -66,7 +66,7 @@ const foodData = {
     {
       foodUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679150281/967fe03b58464dad9f82d91650d98824_abg1w2.jpg",
-      name: "05    Tacos",
+      name: "05.    Tacos",
       origin: "Mexico, 19th Century",
       flagUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679150321/Flag-Mexico_a1vws0.jpg",
@@ -82,7 +82,7 @@ const foodData = {
     {
       foodUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679150369/62316f3656f2471d8d636952b7bfe2a8_kg9aqh.jpg",
-      name: "06    Cellophane Noodles",
+      name: "06.    Cellophane Noodles",
       origin: "China, 4,000 years ago",
       flagUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679150434/Flag-China_zkbqzv.jpg",
@@ -99,7 +99,7 @@ const foodData = {
     {
       foodUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679150640/0c304a7def724c33bcb19f5f1985019e_gw0twl.jpg",
-      name: "07    Tofu",
+      name: "07.    Tofu",
       origin: "JIANGSU, China, 2nd century BC",
       flagUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679150434/Flag-China_zkbqzv.jpg",
@@ -115,7 +115,7 @@ const foodData = {
     {
       foodUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679150799/b075a8fbe7224ef787272cf4d979e388_neich8.jpg",
-      name: "08    Croissant",
+      name: "08.    Croissant",
       origin: "France, 1683",
       flagUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679150844/1200px-Flag_of_France.svg_dnufuv.png",
@@ -127,7 +127,7 @@ const foodData = {
     {
       foodUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679151148/c5e1d353b92a4ef2ae7114a4b51d2192_paq6qc.jpg",
-      name: "09   Tortilla",
+      name: "09.   Tortilla",
       origin: "Mexico 10,000 BC",
       flagUrl:
         "https://cdn.britannica.com/73/2573-004-29818847/Flag-Mexico.jpg",
@@ -141,7 +141,7 @@ const foodData = {
     {
       foodUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679151010/8778f2ab8696489d8b8c16fbd7a685e9_cdadzp.jpg",
-      name: "10   Yakiniku",
+      name: "10.   Yakiniku",
       origin: "South Korea",
       flagUrl:
         "https://res.cloudinary.com/de9zdtobn/image/upload/v1679151251/Flag-South-Korea_bahcoj.jpg",
