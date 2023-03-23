@@ -12,6 +12,7 @@
   grid-template-columns: 1fr 1fr;
   margin: 5em 3em;
   justify-items: center;
+  position: relative;
 }
 .card-header {
   display: flex;
@@ -56,6 +57,9 @@
 .list-btn {
   background-color: transparent;
   border: none;
+  position: absolute;
+  bottom: 5.5em;
+  left: 88%;
 }
 .icon-right {
   background: url("https://res.cloudinary.com/de9zdtobn/image/upload/v1679583227/icons8-search-60_jcpjq2.png")

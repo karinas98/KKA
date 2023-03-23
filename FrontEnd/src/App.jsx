@@ -15,11 +15,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/myList" element={<MyList />} />
+        <Route path="/my-list" element={<MyList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/foods/:foodId" element={<FoodPage />} />
-        {/* <Route path="/myList/:foodId/:userId" /> */}
       </Routes>
     </div>
   );

@@ -28,8 +28,8 @@ router
     validate,
     userController.register
   );
-router.route("/myList/:foodId").post(auth, myListController.addFood);
-router.route("/myList").get(auth, myListController.grabList);
+router.route("/my-list/:foodId").post(auth, myListController.addFood);
+router.route("/my-list").get(auth, myListController.grabList);
 router.route("/login").post(userController.login);
 router.route("/users").get(userController.getAllUsers);
 router.route("/foods/:foodId").post(auth, reviewController.createReview);

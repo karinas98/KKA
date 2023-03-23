@@ -4,30 +4,26 @@ import { API_URL } from "../consts-data";
 
 const MyList = () => {
   const [list, setList] = useState([]);
-
+  // const [error, setError] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
-      if (token) {
-        const axiosInstance = axios.create({
+      try {
+        const res = await axios.get(`${API_URL}/my-list`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        try {
-          const res = await axiosInstance.get(`${API_URL}/myList`);
-          setList(res.data);
-        } catch (err) {
-          console.log(err);
-        }
+        setList(res.data.foods);
+        console.log(res.data);
+        //const res = await axios.get(`${API_URL}/users`);
+        // console.log(res.data.data[4].list);
+        // console.log(res.data.data[1].list[1]);
+        // setList(res.data.data[1].list[1]);
+      } catch (err) {
+        console.log(err);
+        //setError(err.response.data.message);
       }
-      //   try {
-      //     const res = await axios.get(`${API_URL}/myList`);
-      //     console.log(res);
-      //     setList(res.data);
-      //   } catch (err) {
-      //     console.log(err);
-      //   }
     };
     fetchData();
   }, []);
@@ -39,6 +35,7 @@ const MyList = () => {
         {list.map((item) => (
           <li key={item._id}>{item.name}</li>
         ))}
+        {/* {error && <h4 className="error">{error}</h4>} */}
       </ul>
     </div>
   );

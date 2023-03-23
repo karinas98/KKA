@@ -1,4 +1,4 @@
-import Food from '../models/food.js';
+import Food from "../models/food.js";
 
 const createReview = async (req, res, next) => {
   const { text } = req.body;
@@ -6,15 +6,15 @@ const createReview = async (req, res, next) => {
   const userId = req.currentUser.id.toString();
   try {
     const findFood = await Food.findById(foodId);
-    if (req.currentUser.role !== 'user') {
-      return res.status(401).json({ message: 'Unauthorized' });
+    if (req.currentUser.role !== "user") {
+      return res.status(401).json({ message: "Unauthorized" });
     }
     if (!findFood) {
-      return res.status(404).json({ message: 'Id not found' });
+      return res.status(404).json({ message: "Id not found" });
     }
     findFood.reviews.push({ text, createdBy: userId });
     await findFood.save();
-    return res.status(200).json({ message: 'Review succesfully added' });
+    return res.status(200).json({ message: "Review succesfully added" });
   } catch (err) {
     next(err);
   }
@@ -25,10 +25,10 @@ const updateReview = async (req, res, next) => {
   const { foodId, reviewId } = req.params;
   const findFood = await Food.findById(foodId);
   if (!findFood) {
-    return res.status(404).json({ message: 'Id not found' });
+    return res.status(404).json({ message: "Id not found" });
   }
   if (req.currentUser.id !== findFood.reviews.createdBy) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ message: "Unauthorized" });
   }
   const findReview = findFood.reviews.find((review) => review.id === reviewId);
 
@@ -39,7 +39,7 @@ const updateReview = async (req, res, next) => {
   await findFood.save();
   return res
     .status(200)
-    .json({ msg: 'Review succesfully updated', data: findReview });
+    .json({ msg: "Review succesfully updated", data: findReview });
 };
 
 const deleteReview = async (req, res, next) => {
@@ -47,16 +47,16 @@ const deleteReview = async (req, res, next) => {
   try {
     const findFood = await Food.findById(foodId);
     if (!findFood) {
-      return res.status(404).json({ message: 'Id not found' });
+      return res.status(404).json({ message: "Id not found" });
     }
-    if (req.currentUser.role !== 'admin') {
-      return res.status(401).json({ message: 'Unauthorized' });
+    if (req.currentUser.role !== "admin") {
+      return res.status(401).json({ message: "Unauthorized" });
     }
     findFood.reviews = findFood.reviews.filter(
       (review) => review.id !== reviewId
     );
     await findFood.save();
-    return res.status(200).json({ message: 'Review succesfully deleted' });
+    return res.status(200).json({ message: "Review succesfully deleted" });
   } catch (err) {
     next(err);
   }

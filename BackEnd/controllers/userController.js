@@ -59,7 +59,8 @@ const login = async (req, res, next) => {
     };
     const token = jwt.sign(payload, JWT_SECRET);
     return res.status(200).json({
-      message: `You have succesfully logged in! ${token}`,
+      message: `You have succesfully logged in! `,
+      token,
     });
   } catch (err) {
     next(err);
