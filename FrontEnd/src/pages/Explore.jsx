@@ -21,7 +21,7 @@ const Explore = () => {
     console.log(inputValue);
     const res = await axios.get(`${API_URL}/foods`);
     const foodsArray = res.data.data;
-    console.log(res)
+    console.log(res);
     foodsArray.sort((a, z) => {
       return parseInt(z.name) - parseInt(a.name);
     });
@@ -70,10 +70,7 @@ const Explore = () => {
   }, []);
 
   return (
-    <div>
-
     <div className="explore">
-
       <form className="search-form">
         <input
           className="input-search icon-right"
@@ -116,10 +113,10 @@ const Explore = () => {
                           <Card.Title>{element.name}</Card.Title>
                         </li>
 
-                        <button className="list-btn" onClick={() => addToMyList(element._id)}>
-
-                        
-
+                        <button
+                          className="list-btn"
+                          onClick={() => addToMyList(element._id)}
+                        >
                           <img
                             className="list-icon"
                             src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679488194/icons8-add-to-list-64_kuuyn6.png"

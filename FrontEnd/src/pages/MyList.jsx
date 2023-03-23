@@ -15,8 +15,9 @@ const MyList = () => {
           },
         });
         try {
-          const res = await axiosInstance.get(`${API_URL}/myList`);
-          setList(res.data);
+          const res = await axiosInstance.get(`${API_URL}/users`);
+          setList(res.data.data[4]);
+          console.log(res.data.data[4].list);
         } catch (err) {
           console.log(err);
         }
@@ -36,9 +37,9 @@ const MyList = () => {
     <div>
       <h1>My list:</h1>
       <ul>
-        {list.map((item) => (
+        {/* {list.map((item) => (
           <li key={item._id}>{item.name}</li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );
