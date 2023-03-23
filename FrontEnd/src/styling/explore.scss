@@ -1,33 +1,53 @@
+.explore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: none !important;
+}
 .food-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin: 5em 3em;
+  justify-items: center;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-img-top {
+  height: 250px;
 }
 .flag-card {
   width: 60px;
-  border: 1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
-.flag2-card {
-  width: 60px;
-}
-.flags {
-  display: flex;
-  gap: 20px;
-}
+
 .origin-card {
   display: flex;
   gap: 10px;
   align-items: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  height: 50px;
 }
 .search-form {
-  margin: 20px;
+  margin: 70px 0px 20px 0px;
+  margin-right: 47%;
 }
 .input-search {
-  padding: 10px;
+  padding: 15px;
   width: 20em;
+  border-radius: 10px;
 }
 .dropdown-search {
   display: flex;
   align-items: center;
+  margin: 8px;
+  gap: 10px;
 }
 .list-icon {
   border-style: none;
@@ -36,4 +56,9 @@
 .list-btn {
   background-color: transparent;
   border: none;
+}
+.icon-right {
+  background: url("https://res.cloudinary.com/de9zdtobn/image/upload/v1679583227/icons8-search-60_jcpjq2.png")
+    no-repeat right;
+  background-size: 30px;
 }

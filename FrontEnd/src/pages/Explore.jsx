@@ -21,6 +21,7 @@ const Explore = () => {
     console.log(inputValue);
     const res = await axios.get(`${API_URL}/foods`);
     const foodsArray = res.data.data;
+    console.log(res)
     foodsArray.sort((a, z) => {
       return parseInt(z.name) - parseInt(a.name);
     });
@@ -70,10 +71,13 @@ const Explore = () => {
 
   return (
     <div>
+
+    <div className="explore">
+
       <form className="search-form">
         <input
-          className="input-search"
-          type="search"
+          className="input-search icon-right"
+          type="text"
           placeholder="Search here"
           onChange={handleChange}
           value={searchInput}
@@ -93,7 +97,7 @@ const Explore = () => {
       {isLoading ? (
         <p>Loading</p>
       ) : (
-        <ul>
+        <ul className="food-card">
           {foods.map((element, ind) => (
             <ul key={ind}>
               <Card style={{ width: "30rem" }}>
@@ -107,11 +111,15 @@ const Explore = () => {
                       />
                     </li>
                     <Card.Body>
-                      <div>
+                      <div className="card-header">
                         <li>
                           <Card.Title>{element.name}</Card.Title>
                         </li>
-                        <button onClick={() => addToMyList(element._id)}>
+
+                        <button className="list-btn" onClick={() => addToMyList(element._id)}>
+
+                        
+
                           <img
                             className="list-icon"
                             src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679488194/icons8-add-to-list-64_kuuyn6.png"
@@ -119,16 +127,11 @@ const Explore = () => {
                         </button>
                       </div>
                       <div className="origin-card">
-                        <li>
-                          <Card.Text>{element.origin} - </Card.Text>
-                        </li>
-
                         <li className="flag-card">
-                          <Card.Img
-                            variant="top"
-                            src={element.flagUrl}
-                            alt="flags"
-                          />
+                          <Card.Img src={element.flagUrl} alt="flags" />
+                        </li>
+                        <li>
+                          <Card.Text>{element.origin} </Card.Text>
                         </li>
                       </div>
                     </Card.Body>
