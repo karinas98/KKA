@@ -7,12 +7,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 const Login = () => {
-  // const initialFormData = {
-  //   userName: "",
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: "",
-  // };
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
@@ -38,10 +32,6 @@ const Login = () => {
       const token = data.token;
       localStorage.setItem("token", token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-      //this code below set default headers
-      //   axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
-
       setFormData(formData);
       navigate("/");
     } catch (err) {

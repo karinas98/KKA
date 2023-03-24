@@ -6,15 +6,23 @@ const createReview = async (req, res, next) => {
   const userId = req.currentUser.id.toString();
   try {
     const findFood = await Food.findById(foodId);
-    // if (req.currentUser.role !== "user") {
-    //   return res.status(401).json({ message: "Unauthorized" });
-    // }
+    if (!req.currentUser) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     if (!findFood) {
       return res.status(404).json({ message: "Id not found" });
     }
+    const existingReview = findFood.reviews.find(
+      (review) => review.createdBy.toString() === userId
+    );
+    if (existingReview) {
+      return res
+        .status(400)
+        .json({ message: "You have already added a review" });
+    }
     findFood.reviews.push({ text, createdBy: userId });
     await findFood.save();
-    return res.status(200).json({ message: "Review succesfully added" });
+    return res.status(200).json({ message: "Your review has been added" });
   } catch (err) {
     next(err);
   }

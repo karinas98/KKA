@@ -5,9 +5,12 @@ import { API_URL } from "../consts-data";
 
 const FoodPage = () => {
   const [review, SetReview] = useState("");
-  //const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [food, setFood] = useState({});
+  const [loading, setLoading] = useState(true);
   const { foodId } = useParams();
+  const [error, setError] = useState("");
+  const [confirmMessage, setConfirmMessage] = useState("");
 
   const onChangeHandler = (e) => {
     SetReview(e.target.value);
@@ -18,27 +21,37 @@ const FoodPage = () => {
       try {
         const res1 = await axios.get(`${API_URL}/foods/${foodId}`);
         setFood(res1.data.data);
-        console.log(food);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, []);
+  }, [foodId]);
 
-  // const addReview = async (foodId) => {
-  //   try {
-  //     const res2 = await axios.post(`${API_URL}/foods/${foodId}`, {
-  //       text: review,
-  //     });
-  //     const newReview = res2.data;
-  //     setReviews((reviews) => [...reviews, newReview]);
-  //     console.log(reviews);
-  //     SetReview("");
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const addReview = async (foodId) => {
+    try {
+      const res2 = await axios.post(`${API_URL}/foods/${foodId}`, {
+        text: review,
+      });
+      const newReview = res2.data;
+      setReviews((reviews) => [...reviews, newReview]);
+      SetReview("");
+      setConfirmMessage(res2.data.message);
+      setTimeout(() => {
+        setConfirmMessage("");
+      }, 3000);
+    } catch (err) {
+      setError(err.response.data.message);
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -57,18 +70,32 @@ const FoodPage = () => {
               <img width="100%" src={food.foodUrl} />
             </li>
           </span>
-
           <li>
             <p className="inv-desc">{food.description}</p>
           </li>
           <div className="main-container">
             <h3>Reviews:</h3>
-            {/* {food.reviews.map((review) => review.text)} */}
+            {food.reviews &&
+              food.reviews.map((review) => <li>{review.text}</li>)}
             <div className="review-flexbox">
-              <h3 className="review text">Leave a Comment</h3>
-              <textarea value={review} onChange={onChangeHandler}></textarea>
-              <br></br>
-              <button>Submit</button>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  addReview(foodId);
+                }}
+              >
+                {confirmMessage && (
+                  <h4 className="success">{confirmMessage}</h4>
+                )}
+                {error && <h4 className="error">{error}</h4>}
+                <input
+                  type="text"
+                  placeholder="Add your review"
+                  onChange={onChangeHandler}
+                  value={review}
+                ></input>
+                <button type="submit">Submit </button>
+              </form>
             </div>
           </div>
         </div>
