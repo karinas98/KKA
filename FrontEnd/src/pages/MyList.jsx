@@ -10,15 +10,19 @@ const MyList = () => {
     try {
       const res = await axios.delete(`${API_URL}/my-list/${foodId}`);
       setConfirmMessage(res.data.message);
-      setList(list.filter((item) => item._id !== foodId)); // remove item from the UI
+      setTimeout(() => {
+        setConfirmMessage("");
+      }, 3000);
+      setList(list.filter((item) => item._id !== foodId));
     } catch (err) {
-      console.log(error);
       setError(err.response.data.message);
+      setTimeout(() => {
+        setError("");
+      }, 3000);
     }
   };
 
   const [list, setList] = useState([]);
-  // const [error, setError] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
@@ -30,13 +34,8 @@ const MyList = () => {
         });
         setList(res.data.foods);
         console.log(res.data);
-        //const res = await axios.get(`${API_URL}/users`);
-        // console.log(res.data.data[4].list);
-        // console.log(res.data.data[1].list[1]);
-        // setList(res.data.data[1].list[1]);
       } catch (err) {
         console.log(err);
-        //setError(err.response.data.message);
       }
     };
     fetchData();
@@ -52,7 +51,6 @@ const MyList = () => {
             <button onClick={() => removeFromList(item._id)}></button>
           </li>
         ))}
-        {/* {error && <h4 className="error">{error}</h4>} */}
       </ul>
       {confirmMessage && <h4 className="success">{confirmMessage}</h4>}
       {error && <h4 className="error">{error}</h4>}
