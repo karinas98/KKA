@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "../consts-data";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from "react-bootstrap/Dropdown";
 
@@ -13,7 +13,7 @@ const Explore = () => {
   const [searchFilter, setSearchFilter] = useState(foods);
   const [error, setError] = useState("");
   const [confirmMessage, setConfirmMessage] = useState("");
-
+  const navigate = useNavigate();
   const handleChange = async (e) => {
     try {
       e.preventDefault();
@@ -56,11 +56,9 @@ const Explore = () => {
     }
   };
 
-  // const onClick = async () => {
-  //   const res = await axios.get(`${API_URL}/users`);
-  //   const addToMyList = res.users.list;
-  //   addToMyList.push(food._id)
-  // };
+  const onClick = async (e) => {
+    navigate(`/foods/${e}`);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,23 +81,27 @@ const Explore = () => {
   return (
     <div className="explore">
       <section className="explore-header">
-        <h1 className="explore-title">Explore</h1>
+        <h1 className="explore-title">
+          The 10 most popular foods in the world
+        </h1>
         <form className="search-form">
           <input
             className="input-search icon-right"
             type="text"
-            placeholder="Search here"
+            placeholder="Search by country"
             onChange={handleChange}
             value={searchInput}
           />
           {searchFilter.map((element) => (
-            <Dropdown.Item key={element._id} to={`/foods/${element._id}`}>
-              <Link to={`/foods/${element._id}`}>
-                <span className="dropdown-search">
-                  <img className="flag-card" src={element.flagUrl} />
-                  <p>{element.name}</p>
-                </span>
-              </Link>
+            <Dropdown.Item
+              key={element._id}
+              onClick={() => onClick(element._id)}
+              to={`/foods/${element._id}`}
+            >
+              <span className="dropdown-search">
+                <img className="flag-card" src={element.flagUrl} />
+                <p>{element.name}</p>
+              </span>
             </Dropdown.Item>
           ))}
         </form>
