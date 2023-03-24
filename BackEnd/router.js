@@ -13,6 +13,7 @@ router
   .route("/foods")
   .get(foodController.getAll)
   .post(auth, foodController.create);
+
 router
   .route("/foods/:id")
   .get(foodController.getById)
@@ -25,10 +26,14 @@ router
     body("email").isEmail(),
     body("password").isLength({ min: 7 }),
     body("role"),
+    body("userName").isLength({ min: 3 }),
     validate,
     userController.register
   );
-router.route("/my-list/:foodId").post(auth, myListController.addFood);
+router
+  .route("/my-list/:foodId")
+  .post(auth, myListController.addFood)
+  .delete(auth, myListController.deleteListItem);
 router.route("/my-list").get(auth, myListController.grabList);
 router.route("/login").post(userController.login);
 router.route("/users").get(userController.getAllUsers);

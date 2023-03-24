@@ -57,6 +57,7 @@ const Login = () => {
         <form onSubmit={onSubmit}>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Control
+              type="email"
               placeholder="Email"
               name="email"
               value={formData.email}
@@ -65,8 +66,9 @@ const Login = () => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Control
+              type="password"
               onChange={onChange}
-              placeholder="Password*"
+              placeholder="Password"
               name="password"
               value={formData.password}
             />

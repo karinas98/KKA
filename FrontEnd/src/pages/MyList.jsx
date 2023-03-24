@@ -3,6 +3,20 @@ import axios from "axios";
 import { API_URL } from "../consts-data";
 
 const MyList = () => {
+  const [error, setError] = useState("");
+  const [confirmMessage, setConfirmMessage] = useState("");
+
+  const removeFromList = async (foodId) => {
+    try {
+      const res = await axios.delete(`${API_URL}/my-list/${foodId}`);
+      setConfirmMessage(res.data.message);
+      setList(list.filter((item) => item._id !== foodId)); // remove item from the UI
+    } catch (err) {
+      console.log(error);
+      setError(err.response.data.message);
+    }
+  };
+
   const [list, setList] = useState([]);
   // const [error, setError] = useState("");
   useEffect(() => {
@@ -33,10 +47,15 @@ const MyList = () => {
       <h1>My list:</h1>
       <ul>
         {list.map((item) => (
-          <li key={item._id}>{item.name}</li>
+          <li key={item._id}>
+            {item.name}
+            <button onClick={() => removeFromList(item._id)}></button>
+          </li>
         ))}
         {/* {error && <h4 className="error">{error}</h4>} */}
       </ul>
+      {confirmMessage && <h4 className="success">{confirmMessage}</h4>}
+      {error && <h4 className="error">{error}</h4>}
     </div>
   );
 };
