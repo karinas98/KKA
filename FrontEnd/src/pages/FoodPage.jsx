@@ -5,32 +5,40 @@ import { API_URL } from "../consts-data";
 
 const FoodPage = () => {
   const [review, SetReview] = useState("");
-  const [reviews, setReviews] = useState([]);
+  //const [reviews, setReviews] = useState([]);
+  const [food, setFood] = useState({});
+  const { foodId } = useParams();
+
   const onChangeHandler = (e) => {
     SetReview(e.target.value);
   };
-  const onClickChandler = () => {
-    setReviews((elem) => [...elem, review]);
-    SetReview("");
-  };
-
-  const [food, setFood] = useState({});
-  const { foodId } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${API_URL}/foods/${foodId}`);
-        // const res2 = await axios.post(`${API_URL}/foods/${foodId}`);
-        setFood(res.data.data);
-        // setReviews(res2.data.data);
-        // console.log(res2.data.data);
+        const res1 = await axios.get(`${API_URL}/foods/${foodId}`);
+        setFood(res1.data.data);
+        console.log(food);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
   }, []);
+
+  // const addReview = async (foodId) => {
+  //   try {
+  //     const res2 = await axios.post(`${API_URL}/foods/${foodId}`, {
+  //       text: review,
+  //     });
+  //     const newReview = res2.data;
+  //     setReviews((reviews) => [...reviews, newReview]);
+  //     console.log(reviews);
+  //     SetReview("");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div>
@@ -54,14 +62,13 @@ const FoodPage = () => {
             <p className="inv-desc">{food.description}</p>
           </li>
           <div className="main-container">
-            {reviews.map((element) => (
-              <div className="review-container">{element}</div>
-            ))}
+            <h3>Reviews:</h3>
+            {/* {food.reviews.map((review) => review.text)} */}
             <div className="review-flexbox">
               <h3 className="review text">Leave a Comment</h3>
               <textarea value={review} onChange={onChangeHandler}></textarea>
               <br></br>
-              <button onClick={onClickChandler}>Submit</button>
+              <button>Submit</button>
             </div>
           </div>
         </div>

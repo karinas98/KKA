@@ -33,18 +33,24 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (formData.password.length < 7) {
-        setError("password must be at least 7 characters");
-        return;
+      if (formData.password.length < 7 || formData.userName.length < 3) {
+        setError("Invalid input please try again");
+        setTimeout(() => {
+          setError("");
+        }, 3000);
+      } else {
+        const res = await axios.post(`${API_URL}/register`, formData);
+        console.log(res);
+        setMessage(res.data.message);
+        setFormData(formData);
+        navigate("/login");
       }
-      const res = await axios.post(`${API_URL}/register`, formData);
-      console.log(res);
-      setMessage(res.data.message);
-      setFormData(formData);
-      navigate("/login");
     } catch (err) {
       console.log(err);
       setError(err.response.data.message);
+      setTimeout(() => {
+        setError("");
+      }, 3000);
     }
   };
   return (
@@ -55,7 +61,8 @@ const Register = () => {
         <form onSubmit={onSubmit}>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Control
-              placeholder="UserName"
+              type="text"
+              placeholder="Username"
               name="userName"
               onChange={onChange}
               value={formData.userName}
@@ -63,6 +70,7 @@ const Register = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Control
+              type="email"
               placeholder="Email"
               name="email"
               value={formData.email}
@@ -71,15 +79,17 @@ const Register = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Control
+              type="password"
               onChange={onChange}
-              placeholder="Password*"
+              placeholder="Password"
               name="password"
               value={formData.password}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Control
-              placeholder="Confirm Password*"
+              type="password"
+              placeholder="Confirm Password"
               name="confirmPassword"
               onChange={onChange}
               value={formData.confirmPassword}

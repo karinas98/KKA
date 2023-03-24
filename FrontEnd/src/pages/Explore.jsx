@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { API_URL } from "../consts-data";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
@@ -14,38 +13,45 @@ const Explore = () => {
   const [searchFilter, setSearchFilter] = useState(foods);
   const [error, setError] = useState("");
   const [confirmMessage, setConfirmMessage] = useState("");
-  const handleChange = async (e) => {
-    e.preventDefault();
 
-    const inputValue = e.target.value;
-    setSearchInput(inputValue);
-    console.log(inputValue);
-    const res = await axios.get(`${API_URL}/foods`);
-    const foodsArray = res.data.data;
-    console.log(res);
-    foodsArray.sort((a, z) => {
-      return parseInt(z.name) - parseInt(a.name);
-    });
-    if (inputValue.trim() === "") {
-      setSearchFilter([]);
-    } else {
-      setFoods(foodsArray);
-      const filteredFoods = foodsArray.filter((food) =>
-        food.origin.toLowerCase().includes(inputValue.toLowerCase())
-      );
-      setSearchFilter(filteredFoods);
-      console.log(searchFilter);
-    }
-  };
+  const handleChange = async (e) => {
+    useEffect(() => {
+      e.preventDefault();
+      const inputValue = e.target.value;
+      setSearchInput(inputValue);
+      console.log(inputValue);
+      const res = await axios.get(`${API_URL}/foods`);
+      const foodsArray = res.data.data;
+      console.log(res);
+      foodsArray.sort((a, z) => {
+        return parseInt(z.name) - parseInt(a.name);
+      });
+      if (inputValue.trim() === "") {
+        setSearchFilter([]);
+      } else {
+        setFoods(foodsArray);
+        const filteredFoods = foodsArray.filter((food) =>
+          food.origin.toLowerCase().includes(inputValue.toLowerCase())
+        );
+        setSearchFilter(filteredFoods);
+        console.log(searchFilter);
+      }
+    },[])
+    
 
   const addToMyList = async (foodId) => {
     try {
       const res = await axios.post(`${API_URL}/my-list/${foodId}`);
       setConfirmMessage(res.data.message);
-      console.log(confirmMessage);
+      setTimeout(() => {
+        setConfirmMessage("");
+      }, 3000);
     } catch (err) {
-      console.log(error);
       setError(err.response.data.message);
+      console.log(err);
+      setTimeout(() => {
+        setError("");
+      }, 3000);
     }
   };
 

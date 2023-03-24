@@ -6,9 +6,9 @@ const createReview = async (req, res, next) => {
   const userId = req.currentUser.id.toString();
   try {
     const findFood = await Food.findById(foodId);
-    if (req.currentUser.role !== "user") {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
+    // if (req.currentUser.role !== "user") {
+    //   return res.status(401).json({ message: "Unauthorized" });
+    // }
     if (!findFood) {
       return res.status(404).json({ message: "Id not found" });
     }
