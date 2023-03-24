@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { API_URL } from "../consts-data";
 const HomePage = () => {
   return (
     <div>
@@ -10,11 +8,11 @@ const HomePage = () => {
         <h2 className="head-author">- James Beard</h2>
       </section>
       <section className="home-body">
-        <div class="square blurb1 fact1">
+        <div className="square blurb1 fact1">
           <span></span>
           <span></span>
           <span></span>
-          <div class="content">
+          <div className="content">
             <h2>
               THE WORLD’S LARGEST BURGER FILLED THE STOMACHS OF 8000 PEOPLE!
             </h2>
@@ -22,11 +20,11 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div class="square blurb2 fact2">
+        <div className="square blurb2 fact2">
           <span></span>
           <span></span>
           <span></span>
-          <div class="content">
+          <div className="content">
             <h2>SUSHI RICE WAS ONCE CONSIDERED TRASH</h2>
             <p>
               The rice was wrapped around the fish in order to give it a unique
@@ -36,11 +34,11 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div class="square blurb3 fact3">
+        <div className="square blurb3 fact3">
           <span></span>
           <span></span>
           <span></span>
-          <div class="content">
+          <div className="content">
             <h2>THE BIGGEST TACO EVER WAS HUGE!</h2>
             <p>
               The biggest taco ever made was constructed on November 20th, 2011
@@ -51,7 +49,7 @@ const HomePage = () => {
         </div>
       </section>
       <footer>
-        <ul class="footer-list">
+        <ul className="footer-list">
           <li>Home</li>
           <li>Explore</li>
           <li>My List</li>
