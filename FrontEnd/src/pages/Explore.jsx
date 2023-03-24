@@ -15,7 +15,7 @@ const Explore = () => {
   const [confirmMessage, setConfirmMessage] = useState("");
 
   const handleChange = async (e) => {
-    useEffect(() => {
+    try {
       e.preventDefault();
       const inputValue = e.target.value;
       setSearchInput(inputValue);
@@ -36,9 +36,10 @@ const Explore = () => {
         setSearchFilter(filteredFoods);
         console.log(searchFilter);
       }
-    },[])
-    
-
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const addToMyList = async (foodId) => {
     try {
       const res = await axios.post(`${API_URL}/my-list/${foodId}`);
