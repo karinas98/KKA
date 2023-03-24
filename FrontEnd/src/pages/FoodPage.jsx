@@ -5,7 +5,6 @@ import { API_URL } from "../consts-data";
 
 const FoodPage = () => {
   const [review, SetReview] = useState("");
-  const [reviews, setReviews] = useState([]);
   const [food, setFood] = useState({});
   const [loading, setLoading] = useState(true);
   const { foodId } = useParams();
@@ -34,10 +33,10 @@ const FoodPage = () => {
       const res2 = await axios.post(`${API_URL}/foods/${foodId}`, {
         text: review,
       });
-      const newReview = res2.data;
-      setReviews((reviews) => [...reviews, newReview]);
       SetReview("");
       setConfirmMessage(res2.data.message);
+      const res1 = await axios.get(`${API_URL}/foods/${foodId}`);
+      setFood(res1.data.data);
       setTimeout(() => {
         setConfirmMessage("");
       }, 3000);
@@ -76,7 +75,9 @@ const FoodPage = () => {
           <div className="main-container">
             <h3>Reviews:</h3>
             {food.reviews &&
-              food.reviews.map((review) => <li>{review.text}</li>)}
+              food.reviews.map((review, ind) => (
+                <li key={ind}>{review.text}</li>
+              ))}
             <div className="review-flexbox">
               <form
                 onSubmit={(e) => {
