@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "../consts-data";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 const MyList = () => {
   const [error, setError] = useState("");
@@ -42,18 +44,49 @@ const MyList = () => {
   }, []);
 
   return (
-    <div>
-      <h1>My list:</h1>
-      <ul>
-        {list.map((item) => (
-          <li key={item._id}>
-            {item.name}
-            <button onClick={() => removeFromList(item._id)}></button>
-          </li>
-        ))}
-      </ul>
-      {confirmMessage && <h4 className="success">{confirmMessage}</h4>}
-      {error && <h4 className="error">{error}</h4>}
+    <div className="list-page">
+      <div className="gradient"></div>
+      <div className="list">
+        <h1 className="list-title">My List</h1>
+        {confirmMessage && <h4 className="success">{confirmMessage}</h4>}
+        {error && <h4 className="error">{error}</h4>}
+        <ul>
+          {list.map((item) => (
+            <Card className="card">
+              <li key={item._id}>
+                <Card.Body className="list-body">
+                  <Card.Header className="card-title">{item.name}</Card.Header>
+                  <Card.Title>
+                    <img
+                      className="img-list"
+                      width="150px;"
+                      src={item.foodUrl}
+                    />
+                  </Card.Title>
+                  <Card.Text>{console.log(item)}</Card.Text>
+                  <Button
+                    variant="danger"
+                    className="list-delete"
+                    onClick={() => removeFromList(item._id)}
+                  >
+                    Delete From List
+                  </Button>
+                </Card.Body>
+              </li>
+            </Card>
+          ))}
+        </ul>
+        {/* {confirmMessage && <h4 className="success">{confirmMessage}</h4>}
+        {error && <h4 className="error">{error}</h4>} */}
+      </div>
+      <footer>
+        <ul className="footer-list">
+          <li>Home</li>
+          <li>Explore</li>
+          <li>My List</li>
+          <li>Privacy Policy</li>
+        </ul>
+      </footer>
     </div>
   );
 };

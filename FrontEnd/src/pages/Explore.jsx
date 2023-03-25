@@ -81,50 +81,28 @@ const Explore = () => {
   return (
     <div className="explore">
       <section className="explore-header">
-
-
         <h1 className="explore-title">
           The 10 most popular foods in the world
         </h1>
-        <form className="search-form">
-          <input
-            className="input-search icon-right"
-            type="text"
-            placeholder="Search by country"
-            onChange={handleChange}
-            value={searchInput}
-          />
-          {searchFilter.map((element) => (
-            <Dropdown.Item
-              key={element._id}
-              onClick={() => onClick(element._id)}
-              to={`/foods/${element._id}`}
-            >
-              <span className="dropdown-search">
-                <img className="flag-card" src={element.flagUrl} />
-                <p>{element.name}</p>
-              </span>
-            </Dropdown.Item>
-          ))}
-        </form>
-
       </section>
       <form className="search-form">
         <input
           className="input-search icon-right"
           type="text"
-          placeholder="Search here"
+          placeholder="Search by country"
           onChange={handleChange}
           value={searchInput}
         />
         {searchFilter.map((element) => (
-          <Dropdown.Item key={element._id} to={`/foods/${element._id}`}>
-            <Link to={`/foods/${element._id}`}>
-              <span className="dropdown-search">
-                <img className="flag-card" src={element.flagUrl} />
-                <p>{element.name}</p>
-              </span>
-            </Link>
+          <Dropdown.Item
+            key={element._id}
+            onClick={() => onClick(element._id)}
+            to={`/foods/${element._id}`}
+          >
+            <span className="dropdown-search">
+              <img className="flag-card" src={element.flagUrl} />
+              <p>{element.name}</p>
+            </span>
           </Dropdown.Item>
         ))}
       </form>
