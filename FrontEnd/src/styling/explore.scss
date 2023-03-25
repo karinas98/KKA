@@ -31,12 +31,7 @@
   font-variation-settings: "wght" 582;
   letter-spacing: 1px;
 }
-.success {
-  margin-top: 3.5em !important;
-}
-.error {
-  margin-top: 3.5em !important;
-}
+
 .card {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border: none !important;
@@ -106,5 +101,14 @@
     no-repeat right;
   background-size: 30px;
 }
+.success {
+  position: relative;
+  top: 85%;
+  left: 50%;
+  width: fit-content;
+}
 
+.main-card {
+  position: absolute;
+}
 //Test

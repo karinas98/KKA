@@ -6,15 +6,16 @@ import Card from "react-bootstrap/Card";
 
 const MyList = () => {
   const [error, setError] = useState("");
-  const [confirmMessage, setConfirmMessage] = useState("");
+  // const [confirmMessage, setConfirmMessage] = useState("");
 
   const removeFromList = async (foodId) => {
     try {
       const res = await axios.delete(`${API_URL}/my-list/${foodId}`);
-      setConfirmMessage(res.data.message);
-      setTimeout(() => {
-        setConfirmMessage("");
-      }, 3000);
+      console.log(res);
+      // setConfirmMessage(res.data.message);
+      // setTimeout(() => {
+      //  setConfirmMessage("");
+      //  }, 3000);
       setList(list.filter((item) => item._id !== foodId));
     } catch (err) {
       setError(err.response.data.message);
@@ -46,14 +47,15 @@ const MyList = () => {
   return (
     <div className="list-page">
       <div className="gradient"></div>
+      <div className="gradient2"></div>
       <div className="list">
-        <h1 className="list-title">My List</h1>
-        {confirmMessage && <h4 className="success">{confirmMessage}</h4>}
+        {/* <h1 className="list-title">My List</h1> */}
+        {/* {confirmMessage && <h4 className="success">{confirmMessage}</h4>} */}
         {error && <h4 className="error">{error}</h4>}
         <ul>
           {list.map((item) => (
-            <Card className="card">
-              <li key={item._id}>
+            <Card key={item._id} className="card">
+              <li>
                 <Card.Body className="list-body">
                   <Card.Header className="card-title">{item.name}</Card.Header>
                   <Card.Title>
