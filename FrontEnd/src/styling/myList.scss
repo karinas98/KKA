@@ -1,0 +1,69 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  //background-color: darkgray;
+  padding-bottom: 5em;
+  position: relative;
+}
+.card {
+  width: 50%;
+  margin: 10px;
+}
+.list-title {
+  font-size: 110px;
+  font-family: "Gambetta", serif;
+  color: black;
+  font-weight: 700;
+  margin: 0.5em;
+  text-align: center;
+}
+
+.list-delete {
+  width: 150px;
+  height: 40px;
+  border: none;
+}
+.img-list {
+  margin-top: 10px;
+}
+.card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.error {
+  margin-left: 50px;
+}
+.success {
+  margin-left: 50px;
+}
+
+//Background Anim
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.gradient {
+  --size: 250px;
+  --speed: 50s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+
+  width: var(--size);
+  height: var(--size);
+  filter: blur(calc(var(--size) / 5));
+  background-image: linear-gradient(rgba(43, 169, 49, 0.85), rgb(40, 92, 164));
+  animation: rotate var(--speed) var(--easing) alternate infinite;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  position: absolute;
+  left: 50%;
+}
+
+@media (min-width: 720px) {
+  .gradient {
+    --size: 500px;
+  }
+}

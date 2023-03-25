@@ -17,6 +17,8 @@ const foodData = {
       In an ironic twist of fate, American-style pizza has been re-exported back to Italy, where it is has also gained in popularity today. In 2008, two Italian associations called Real Pizza and the Association of Neapolitan Pizza-makers introduced new regulations on what constitutes a true Neapolitan pizza.
       According to them, the real, legally-protected Neapolitan margherita should be made with exact amounts of mozzarella, salt, and tomatoes, and it should be baked in a wood-fired oven at 485°C. Today, there are numerous variations of this beloved dish throughout the world, from those with simple toppings such as ham, prosciutto, onions, and bell peppers, to unusual variations such as hot dog or hamburger pizza or decadent toppings such as white truffles, edible gold, lobster, and caviar.  `,
       reviews: [],
+      ingredients:
+        "INGREDIENTS - 10 Servings - MAKING THE DOUGH: 1 L (4 1/4 cups) water, 40 – 60g (1.4 - 2.1 oz) salt, 3g (1/2 tsp) fresh yeast, 1,6 –1,8 kg (13 1/3 - 15 cups) flour, 00 type (or, all-purpose) - THE TOPPING: 60 – 80g (2.1 - 2.8 oz) canned, peeled tomatoes, 6 – 7g (1 1/2 tsp) virgin or extra virgin olive oil, 80 – 100g (2.8 - 3.5 oz) mozzarella/fior di latte, a few fresh basil leaves, 5 – 7g (1 1/2 tsp) hard cheese (grated), optional",
     },
     {
       foodUrl:
@@ -31,6 +33,8 @@ const foodData = {
       Termed as the original type of sushi, nigirizushi is prepared by draping a mound of rice with a sliced topping, frequently with some wasabi in between or on the side, while probably the most popular type of sushi known worldwide is makizushi; small, usually bite-sized cylindrical pieces most commonly wrapped in nori — a sheet of dry seaweed.Other best-known types of sushi include chirashizushi, served as a bowl of rice topped with a selection of raw ingredients; the pressed variety called oshizushi; inarizushi - deep-fried tofu sacs containing a filling; the traditional narezushi made with fermented rice; and temaki, cone-shaped pieces of seaweed filled with ingredients.
       Sushi can be eaten with chopsticks or fingers, and it is typically served on a platter or in a bento box with a compartment for dips (usually soy sauce). Due to the worldwide popularity of sushi, many variations of the dish developed outside of Japan.`,
       reviews: [],
+      ingredients:
+        "INGREDIENTS - 10 Servings - Hosomaki - SUSHI RICE: 2 rice cooker cups Japanese short grain rice, 2-inch (5 cm) kombu (dried kelp), 4 tbsp rice vinegar, 2 tbsp sugar, 1 tsp salt (kosher or sea salt; use half if using table salt), Water - HOSOMAKI: 1 Persian/Japanese cucumber, 6.8 oz (190g) sashimi-grade tuna, 1 box natto (fermented soybean), 5 sheets nori (seaweed), soy sauce, wasabi (optional), sushi ginger (optional), TEZU (VINEGARED HAND-DIPPING WATER), ¼ cup (60 ml) water, 1 tbsp rice vinegar",
     },
     {
       foodUrl:
@@ -46,6 +50,8 @@ const foodData = {
         Today, toppings and accompaniments vary from region to region, but for an original version one should visit Louis' Lunch in New Haven, Connecticut, serving the burgers since 1900, and claiming to be the oldest burger joint in the United States.
         Whatever the theories about the origin of burgers may be, and there are a lot of them, it is a convenient, simple and hearty meal that most meat lovers will gladly indulge in.`,
       reviews: [],
+      ingredients:
+        "INGREDIENTS - 6 Servings - 1.2 kg of freshly ground chuck, 1 tbsp of onion powder, 1 tsp salt, 1 tsp freshly ground black pepper, 12 slices of American cheese, 6 large burger buns, preferably homemade, GARNISH: lettuce, onions, sliced, tomatoes, sliced, ketchup, pickles, sliced",
     },
     {
       foodUrl:
@@ -62,6 +68,8 @@ const foodData = {
         Nissin Foods produced the first-ever instant version of noodles with a chicken-flavored broth called Chickin Ramen`,
 
       reviews: [],
+      ingredients:
+        "INGREDIENTS - 6 Servings - CHASHU PORK: 2 lb (900g) slab of boneless pork belly, skin-on, 1/2 cup (120 ml) soy sauce, 1 cup (240 ml) sake, 1 cup (240 ml) mirin, 1/2 cup (100g) sugar, 6 scallions, roughly chopped, 6 whole garlic cloves, One 2-inch (5 cm) knob ginger, roughly sliced, 1 whole shallot, split in half (skin on) - MAYU: 1/4 cup (60 ml) canola or vegetable oil, 10 medium cloves garlic, minced (about 3 1/2 tbsp), 1/4 cup (60 ml) roasted sesame oil - BROTH: 3 lbs (1.35 kg) pig trotters, split lengthwise or cut crosswise into 1-inch disks (ask your butcher to do this for you), 2 lbs (900g) chicken backs and carcasses, skin and excess fat removed, 2 tbsp vegetable oil, 1 large onion, roughly chopped, 12 garlic cloves, One 3-inch (7.5 cm) knob ginger, roughly chopped, 2 whole leeks, washed and roughly chopped, 2 dozen scallions, white parts only (reserve greens and light green parts for garnishing finished soup), 6 oz (170g) whole mushrooms or mushroom scraps, 1 lb (450g) slab pork fat back - RAMEN EGGS/AJITSUKE TAMAGO (optional) : 6 large eggs - NOODLES: 3 - 4 oz (85 - 115g) dry ramen noodles, per serving",
     },
     {
       foodUrl:
@@ -78,6 +86,8 @@ const foodData = {
         As anything can be a filling, there is a version made with fried veins from dried chiles, usually accompanied by salt, a tasty treat called tacos de venas. However, the standard is ground or shredded meat, cheese, potatoes, or vegetables and a topping of onions and coriander.
         Eaten at all times of day and night, one can find them on every corner in Mexico, in restaurants known as taquerias. Alternatively, they can be bought from numerous street vendors.`,
       reviews: [],
+      ingredients:
+        "INGREDIENTS - 12 Servings - Cream Cheese and Chicken Taquitos: 3 cups chicken, cooked and shredded, 6 oz cream cheese, softened, 1/3 cup sour cream, ½ cup salsa, 1 ½ cups Colby Jack cheese, 1 ½ cups baby spinach, chopped and stems removed, 12 6-inch corn tortillas, Vegetable or canola oil, for frying, Salt, Pepper",
     },
     {
       foodUrl:
@@ -94,6 +104,7 @@ const foodData = {
         Apart from China, cellophane noodles are popular in numerous other countries such as Malaysia, Indonesia, the Philippines,
          Japan, Tibet, India, Pakistan, Korea, Vietnam, Thailand, and Hawaii.`,
       reviews: [],
+      ingredients: "",
     },
 
     {
@@ -111,6 +122,7 @@ const foodData = {
       From China, it has spread throughout Asian countries, primarily Japan, Korea, Vietnam, and Thailand, where it became a staple ingredient. Recently, due to its beneficial nutritional values, it has gained popularity in the Western hemisphere, where it is especially favored among vegans and vegetarians.
       Today it represents an international food product included in numerous standard and modern dishes, and it is available at most well-equipped supermarkets around the world.`,
       reviews: [],
+      ingredients: "",
     },
     {
       foodUrl:
@@ -122,6 +134,8 @@ const foodData = {
       description: `These flaky, golden-colored, crescent-shaped pastries are best made with pure butter and a slightly sweet yeast dough. If made properly, the yellow-white interior should be just the slightest bit elastic when pulled from the center, ready to be covered with a pad of butter or some fresh jam.
       Experts agree that the croissant was heavily influenced by Austrian kipfels. This pastry originated in 1683 as a celebration of the Austrian victory over the Ottoman Empire, its shape supposedly mimicking the crescent moon found on the Turkish flag.
       However, the croissant became French the moment people began to make it with puff pastry, a French innovation. Today, French croissants come filled with chocolate, jam, raisins, or even cream cheese. Sold fresh at numerous French boulangeries, they are mainly consumed as a breakfast item.`,
+      ingredients:
+        "INGREDIENTS - 5 Servings - Classic Puff Pastry Croissants - PUFF PASTRY (500g/1.1 lb): 210g (1 2/3 cup + 2 tsp) flour, 85 ml (1/3 cup + 1 tsp) milk, 5g (1 tsp) baker’s yeast, 30g (2 tbsp) caster sugar, 10g (2 tsp) fine salt, 125g (1/2 cup + 2 tsp) butter at room temperature - FOR GLAZING THE CROISSANTS: 1 egg yolk",
       reviews: [],
     },
     {
@@ -137,6 +151,8 @@ const foodData = {
       Today it represents an international food product included in numerous standard and modern dishes, and it is available at most well-equipped supermarkets around the world.`,
 
       reviews: [],
+      ingredients:
+        "INGREDIENTS - 20 Servings - Nixtamalized Corn Tortillas: 200g (7 oz) dried white, yellow, or blue dent or field corn, 600 ml (2 1/2 cups) water, plus more as needed, 3g (1/2 tsp) pickling lime (or other food-grade slacked lime), masa harina para tortillas, as needed",
     },
     {
       foodUrl:
@@ -149,6 +165,7 @@ const foodData = {
       Traditionally, raw, thinly sliced meat and vegetables are brought to the table and grilled by the consumers. The most popular meat for yakiniku includes beef, pork, chicken, and a variety of shellfish. Numerous sauces and dips are usually served on the side - from soy sauce and miso sauce to garlic oil sauce.
       These tasty dishes are very popular at large social gatherings and celebrations, and there is even an official Yakiniku Day, celebrated annually on August 29 ever since 1993.`,
       reviews: [],
+      ingredients: "",
     },
   ],
 };

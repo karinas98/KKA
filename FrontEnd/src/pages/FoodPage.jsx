@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../consts-data";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+import Button from "react-bootstrap/Button";
 
 const FoodPage = () => {
   const [review, SetReview] = useState("");
@@ -72,33 +75,52 @@ const FoodPage = () => {
           <li>
             <p className="inv-desc">{food.description}</p>
           </li>
-          <div className="main-container">
-            <h3>Reviews:</h3>
-            {food.reviews &&
-              food.reviews.map((review, ind) => (
-                <li key={ind}>{review.text}</li>
-              ))}
-            <div className="review-flexbox">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  addReview(foodId);
-                }}
-              >
-                {confirmMessage && (
-                  <h4 className="success">{confirmMessage}</h4>
-                )}
-                {error && <h4 className="error">{error}</h4>}
-                <input
-                  type="text"
-                  placeholder="Add your review"
-                  onChange={onChangeHandler}
-                  value={review}
-                ></input>
-                <button type="submit">Submit </button>
-              </form>
-            </div>
-          </div>
+
+          <Tabs
+            defaultActiveKey="profile"
+            id="fill-tab-example"
+            className="mb-3 tabs"
+            fill
+          >
+            <Tab eventKey="Reviews" title="Reviews">
+              <div className="main-container">
+                {food.reviews &&
+                  food.reviews.map((review) => (
+                    <li className="posted">{review.text}</li>
+                  ))}
+                <div className="review-flexbox">
+                  <form
+                    className="review-form"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      addReview(foodId);
+                    }}
+                  >
+                    {confirmMessage && (
+                      <h4 className="success">{confirmMessage}</h4>
+                    )}
+                    {error && <h4 className="error">{error}</h4>}
+                    <div className="input-review">
+                      <input
+                        className="review-input"
+                        type="text"
+                        placeholder="Add your review"
+                        onChange={onChangeHandler}
+                        value={review}
+                      ></input>
+                      <Button variant="light" type="submit">
+                        Submit{" "}
+                      </Button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </Tab>
+            <Tab eventKey="home" title="Recipe">
+              {food.ingredients}
+            </Tab>
+          </Tabs>
+
         </div>
       </ul>
     </div>
