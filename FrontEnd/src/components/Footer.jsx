@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Footer = () => {
   const navigationLinks = [
@@ -15,9 +16,14 @@ const Footer = () => {
 
   useEffect(() => {
     setLoggedIn(localStorage.getItem("token") ? true : false);
-    console.log("Location updated!");
-    console.log({ location });
-    console.log({ navigate });
+    axios.defaults.headers.common["Authorization"] = localStorage.getItem(
+      "token"
+    )
+      ? `Bearer ${localStorage.getItem("token")}`
+      : "";
+    // console.log("Location updated!");
+    // console.log({ location });
+    // console.log({ navigate });
   }, [location]);
 
   const onLogout = () => {
@@ -26,11 +32,11 @@ const Footer = () => {
   };
 
   return (
-    <nav>
+    <footer>
       {
         <ul className="primary-nav">
           {navigationLinks.map((link, idx) => (
-            <li className="navbar" key={idx}>
+            <li className="footer-bar" key={idx}>
               <Link to={link.slug}>{link.title}</Link>
             </li>
           ))}
@@ -42,22 +48,22 @@ const Footer = () => {
             <li>
               <Link to="/my-list">My List</Link>
             </li>
-            <li className="nav-item" onClick={onLogout}>
+            <li className="footer-item" onClick={onLogout}>
               <Link to="/logout">Logout</Link>
             </li>
           </>
         ) : (
           <>
-            <li className="nav-item">
+            <li className="footer-item">
               <Link to="/register">Register</Link>
             </li>
-            <li className="nav-item">
+            <li className="footer-item">
               <Link to="/login">Login</Link>
             </li>
           </>
         )}
       </ul>
-    </nav>
+    </footer>
   );
 };
 

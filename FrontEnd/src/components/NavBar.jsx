@@ -20,9 +20,9 @@ const NavBar = () => {
     )
       ? `Bearer ${localStorage.getItem("token")}`
       : "";
-    console.log("Location updated!");
-    console.log({ location });
-    console.log({ navigate });
+    // console.log("Location updated!");
+    // console.log({ location });
+    // console.log({ navigate });
   }, [location]);
 
   const onLogout = () => {

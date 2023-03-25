@@ -5,15 +5,15 @@ import Card from "react-bootstrap/Card";
 import { Link, useNavigate } from "react-router-dom";
 //import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from "react-bootstrap/Dropdown";
+import FoodCard from "../components/FoodCard";
 
 const Explore = () => {
   const [foods, setFoods] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [searchFilter, setSearchFilter] = useState(foods);
-  const [error, setError] = useState("");
-  const [confirmMessage, setConfirmMessage] = useState("");
-  const [checkMark, setCheckMark] = useState([]);
+  // nik's code
+  const [usersList, setUsersList] = useState([]);
 
   const navigate = useNavigate();
   const handleChange = async (e) => {
@@ -42,24 +42,6 @@ const Explore = () => {
       console.log(err);
     }
   };
-  const addToMyList = async (foodId) => {
-    try {
-      const res = await axios.post(`${API_URL}/my-list/${foodId}`);
-      const res1 = await axios.get(`${API_URL}/my-list`);
-      setCheckMark(res1.data.foods);
-      console.log(res1.data.foods);
-      setConfirmMessage(res.data.message);
-      setTimeout(() => {
-        setConfirmMessage("");
-      }, 3000);
-    } catch (err) {
-      setError(err.response.data.message);
-      console.log(err);
-      setTimeout(() => {
-        setError("");
-      }, 3000);
-    }
-  };
 
   const onClick = async (e) => {
     navigate(`/foods/${e}`);
@@ -69,7 +51,9 @@ const Explore = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${API_URL}/foods`);
-        console.log(res);
+        const res1 = await axios.get(`${API_URL}/my-list`);
+        setUsersList(res1.data.foods);
+        // console.log(res1.data.data);
         const foodsArray = res.data.data;
         foodsArray.sort((a, z) => {
           return parseInt(z.name) - parseInt(a.name);
@@ -111,67 +95,16 @@ const Explore = () => {
           </Dropdown.Item>
         ))}
       </form>
-
-      {confirmMessage && <h4 className="success">{confirmMessage}</h4>}
-      {error && <h4 className="error">{error}</h4>}
       {isLoading ? (
         <p>Loading</p>
       ) : (
         <ul className="food-card">
-          {foods.map((element, ind) => (
-            <ul key={ind}>
-              <Card style={{ width: "30rem" }}>
-                <Link to={`/foods/${element._id}`}>
-                  <div>
-                    <li>
-                      <Card.Img
-                        variant="top"
-                        src={element.foodUrl}
-                        alt="food image"
-                      />
-                    </li>
-                    <Card.Body>
-                      <div className="card-header">
-                        <li>
-                          <Card.Title>{element.name}</Card.Title>
-                        </li>
-                      </div>
-                      <div className="origin-card">
-                        <li className="flag-card">
-                          <Card.Img src={element.flagUrl} alt="flags" />
-                        </li>
-                        <li>
-                          <Card.Text>{element.origin} </Card.Text>
-                        </li>
-                      </div>
-                    </Card.Body>
-                  </div>
-                </Link>
-
-                <button
-                  className="list-btn"
-                  onClick={() => addToMyList(element._id)}
-                >
-                  {checkMark.map((elem) =>
-                    foods.includes(elem._id) ? (
-                      <img
-                        className="list-icon"
-                        src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679488194/icons8-add-to-list-64_kuuyn6.png"
-                      />
-                    ) : (
-                      <img
-                        className="list-icon"
-                        src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679742442/icons8-done-64_mq0ybn.png"
-                      />
-                    )
-                  )}
-                  <img
-                    className="list-icon"
-                    src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679488194/icons8-add-to-list-64_kuuyn6.png"
-                  />
-                </button>
-              </Card>
-            </ul>
+          {foods.map((element) => (
+            <FoodCard
+              element={element}
+              key={element._id}
+              usersList={usersList}
+            />
           ))}
         </ul>
       )}
