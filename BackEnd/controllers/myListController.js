@@ -57,6 +57,27 @@ const grabList = async (req, res, next) => {
   }
 };
 
+const grabListFood = async (req, res, next) => {
+  const { foodId } = req.params;
+  const user = await User.findById(userId);
+  const food = await Food.findById(foodId);
+  console.log(food);
+  if (!food) {
+    return res.status(404).json({ success: false, message: "Food not found" });
+  }
+  try {
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+    const userList = user.list;
+    res.status(200).json({ success: true, foods: userList });
+  } catch (err) {
+    next(err);
+  }
+};
+
 const deleteListItem = async (req, res, next) => {
   const userId = req.currentUser.id;
   const { foodId } = req.params;

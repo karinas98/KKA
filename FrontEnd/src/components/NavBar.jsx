@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import axios from "axios";
 const NavBar = () => {
   const navigationLinks = [
     { title: "Home", slug: "/" },
@@ -15,13 +15,20 @@ const NavBar = () => {
 
   useEffect(() => {
     setLoggedIn(localStorage.getItem("token") ? true : false);
+    axios.defaults.headers.common["Authorization"] = localStorage.getItem(
+      "token"
+    )
+      ? `Bearer ${localStorage.getItem("token")}`
+      : "";
     console.log("Location updated!");
     console.log({ location });
     console.log({ navigate });
   }, [location]);
 
   const onLogout = () => {
+    axios.defaults.headers.common["Authorization"] = "";
     localStorage.removeItem("token");
+    setLoggedIn(false);
     navigate("/");
   };
 
