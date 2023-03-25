@@ -48,14 +48,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <footer>
-        <ul className="footer-list">
-          <li>Home</li>
-          <li>Explore</li>
-          <li>My List</li>
-          <li>Privacy Policy</li>
-        </ul>
-      </footer>
     </div>
   );
 };
