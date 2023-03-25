@@ -18,6 +18,7 @@ const foodSchema = mongoose.Schema(
     description: { type: String, required: true },
     reviews: [reviewSchema],
     ingredients: { type: String },
+
   },
   {
     timestamps: true,
