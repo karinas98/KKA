@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import Register from "./pages/Register";
+import Footer from "./components/Footer";
 import Explore from "./pages/Explore";
 import MyList from "./pages/MyList";
 import Login from "./pages/Login";
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/foods/:foodId" element={<FoodPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

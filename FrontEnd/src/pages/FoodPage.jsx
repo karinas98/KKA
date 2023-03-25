@@ -75,52 +75,52 @@ const FoodPage = () => {
           <li>
             <p className="inv-desc">{food.description}</p>
           </li>
-
-          <Tabs
-            defaultActiveKey="profile"
-            id="fill-tab-example"
-            className="mb-3 tabs"
-            fill
-          >
-            <Tab eventKey="Reviews" title="Reviews">
-              <div className="main-container">
-                {food.reviews &&
-                  food.reviews.map((review) => (
-                    <li className="posted">{review.text}</li>
-                  ))}
-                <div className="review-flexbox">
-                  <form
-                    className="review-form"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      addReview(foodId);
-                    }}
-                  >
-                    {confirmMessage && (
-                      <h4 className="success">{confirmMessage}</h4>
-                    )}
-                    {error && <h4 className="error">{error}</h4>}
-                    <div className="input-review">
-                      <input
-                        className="review-input"
-                        type="text"
-                        placeholder="Add your review"
-                        onChange={onChangeHandler}
-                        value={review}
-                      ></input>
-                      <Button variant="light" type="submit">
-                        Submit{" "}
-                      </Button>
-                    </div>
-                  </form>
+          <section className="tabs-section">
+            <Tabs
+              defaultActiveKey="profile"
+              id="fill-tab-example"
+              className="mb-3 tabs"
+              fill
+            >
+              <Tab eventKey="Reviews" title="Reviews">
+                <div className="main-container">
+                  {food.reviews &&
+                    food.reviews.map((review) => (
+                      <li className="posted">{review.text}</li>
+                    ))}
+                  <div className="review-flexbox">
+                    <form
+                      className="review-form"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        addReview(foodId);
+                      }}
+                    >
+                      {confirmMessage && (
+                        <h4 className="success-review">{confirmMessage}</h4>
+                      )}
+                      {error && <h4 className="error-review">{error}</h4>}
+                      <div className="input-review">
+                        <input
+                          className="review-input"
+                          type="text"
+                          placeholder="Add your review"
+                          onChange={onChangeHandler}
+                          value={review}
+                        ></input>
+                        <Button variant="light" type="submit">
+                          Submit{" "}
+                        </Button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-              </div>
-            </Tab>
-            <Tab eventKey="home" title="Recipe">
-              {food.ingredients}
-            </Tab>
-          </Tabs>
-
+              </Tab>
+              <Tab eventKey="home" title="Recipe">
+                {food.ingredients}
+              </Tab>
+            </Tabs>
+          </section>
         </div>
       </ul>
     </div>
