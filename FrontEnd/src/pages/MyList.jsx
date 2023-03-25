@@ -63,7 +63,7 @@ const MyList = () => {
                       src={item.foodUrl}
                     />
                   </Card.Title>
-                  <Card.Text>{console.log(item)}</Card.Text>
+                  <Card.Text>{item.ingredients}</Card.Text>
                   <Button
                     variant="danger"
                     className="list-delete"
@@ -76,17 +76,7 @@ const MyList = () => {
             </Card>
           ))}
         </ul>
-        {/* {confirmMessage && <h4 className="success">{confirmMessage}</h4>}
-        {error && <h4 className="error">{error}</h4>} */}
       </div>
-      <footer>
-        <ul className="footer-list">
-          <li>Home</li>
-          <li>Explore</li>
-          <li>My List</li>
-          <li>Privacy Policy</li>
-        </ul>
-      </footer>
     </div>
   );
 };

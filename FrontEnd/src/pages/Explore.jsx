@@ -13,6 +13,8 @@ const Explore = () => {
   const [searchFilter, setSearchFilter] = useState(foods);
   const [error, setError] = useState("");
   const [confirmMessage, setConfirmMessage] = useState("");
+  const [checkMark, setCheckMark] = useState([]);
+
   const navigate = useNavigate();
   const handleChange = async (e) => {
     try {
@@ -43,6 +45,9 @@ const Explore = () => {
   const addToMyList = async (foodId) => {
     try {
       const res = await axios.post(`${API_URL}/my-list/${foodId}`);
+      const res1 = await axios.get(`${API_URL}/my-list`);
+      setCheckMark(res1.data.foods);
+      console.log(res1.data.foods);
       setConfirmMessage(res.data.message);
       setTimeout(() => {
         setConfirmMessage("");
@@ -147,6 +152,19 @@ const Explore = () => {
                   className="list-btn"
                   onClick={() => addToMyList(element._id)}
                 >
+                  {checkMark.map((elem) =>
+                    foods.includes(elem._id) ? (
+                      <img
+                        className="list-icon"
+                        src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679488194/icons8-add-to-list-64_kuuyn6.png"
+                      />
+                    ) : (
+                      <img
+                        className="list-icon"
+                        src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679742442/icons8-done-64_mq0ybn.png"
+                      />
+                    )
+                  )}
                   <img
                     className="list-icon"
                     src="https://res.cloudinary.com/de9zdtobn/image/upload/v1679488194/icons8-add-to-list-64_kuuyn6.png"
@@ -157,14 +175,6 @@ const Explore = () => {
           ))}
         </ul>
       )}
-      <footer>
-        <ul className="footer-list">
-          <li>Home</li>
-          <li>Explore</li>
-          <li>My List</li>
-          <li>Privacy Policy</li>
-        </ul>
-      </footer>
     </div>
   );
 };
