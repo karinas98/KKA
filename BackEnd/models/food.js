@@ -15,7 +15,7 @@ const foodSchema = mongoose.Schema(
     flagUrl: { type: String, required: true },
     name: { type: String, required: true },
     origin: { type: String, required: true },
-    description: { type: String, },
+    description: { type: String, required: true },
     reviews: [reviewSchema],
     // liking: {
     // type: Number,
@@ -23,6 +23,7 @@ const foodSchema = mongoose.Schema(
     // max: 5,
     // default: 3
     //   }
+    
   },
   {
     timestamps: true,
