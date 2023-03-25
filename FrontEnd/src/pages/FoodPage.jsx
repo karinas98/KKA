@@ -8,7 +8,6 @@ import Button from "react-bootstrap/Button";
 
 const FoodPage = () => {
   const [review, SetReview] = useState("");
-  const [reviews, setReviews] = useState([]);
   const [food, setFood] = useState({});
   const [loading, setLoading] = useState(true);
   const { foodId } = useParams();
@@ -37,10 +36,10 @@ const FoodPage = () => {
       const res2 = await axios.post(`${API_URL}/foods/${foodId}`, {
         text: review,
       });
-      const newReview = res2.data;
-      setReviews((reviews) => [...reviews, newReview]);
       SetReview("");
       setConfirmMessage(res2.data.message);
+      const res1 = await axios.get(`${API_URL}/foods/${foodId}`);
+      setFood(res1.data.data);
       setTimeout(() => {
         setConfirmMessage("");
       }, 3000);
@@ -76,6 +75,7 @@ const FoodPage = () => {
           <li>
             <p className="inv-desc">{food.description}</p>
           </li>
+
           <Tabs
             defaultActiveKey="profile"
             id="fill-tab-example"
@@ -120,6 +120,7 @@ const FoodPage = () => {
               {food.ingredients}
             </Tab>
           </Tabs>
+
         </div>
       </ul>
     </div>
