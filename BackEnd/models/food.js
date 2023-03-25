@@ -15,7 +15,7 @@ const foodSchema = mongoose.Schema(
     flagUrl: { type: String, required: true },
     name: { type: String, required: true },
     origin: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String, },
     reviews: [reviewSchema],
     // liking: {
     // type: Number,
