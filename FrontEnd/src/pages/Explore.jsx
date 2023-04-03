@@ -14,6 +14,15 @@ const Explore = () => {
   const [searchFilter, setSearchFilter] = useState(foods);
   // nik's code
   const [usersList, setUsersList] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    setLoggedIn(localStorage.getItem("token") ? true : false);
+    axios.defaults.headers.common["Authorization"] = localStorage.getItem(
+      "token"
+    )
+      ? `Bearer ${localStorage.getItem("token")}`
+      : "";
+  }, [location]);
 
   const navigate = useNavigate();
   const handleChange = async (e) => {
@@ -51,22 +60,28 @@ const Explore = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${API_URL}/foods`);
-        const res1 = await axios.get(`${API_URL}/my-list`);
-        setUsersList(res1.data.foods);
-        // console.log(res1.data.data);
         const foodsArray = res.data.data;
         foodsArray.sort((a, z) => {
           return parseInt(z.name) - parseInt(a.name);
         });
         setIsLoading(false);
         setFoods(foodsArray);
+        const token = localStorage.getItem("token");
+        if (token) {
+          // if the user is authenticated, retrieve their my-list data
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          const res1 = await axios.get(`${API_URL}/my-list`);
+          setUsersList(res1.data.foods);
+        } else {
+          // if the user is not authenticated, set usersList to an empty array
+          setUsersList([]);
+        }
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
   }, []);
-
   return (
     <div className="explore">
       <section className="explore-header">
@@ -95,6 +110,11 @@ const Explore = () => {
           </Dropdown.Item>
         ))}
       </form>
+      {!loggedIn && (
+        <h2 className="subTitle">
+          Log in to add a food with its recipe to your own list
+        </h2>
+      )}
       {isLoading ? (
         <p>Loading</p>
       ) : (

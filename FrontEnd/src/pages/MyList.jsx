@@ -6,35 +6,19 @@ import Card from "react-bootstrap/Card";
 
 const MyList = () => {
   const [error, setError] = useState("");
-  // const [confirmMessage, setConfirmMessage] = useState("");
-
-  const removeFromList = async (foodId) => {
-    try {
-      const res = await axios.delete(`${API_URL}/my-list/${foodId}`);
-      console.log(res);
-      // setConfirmMessage(res.data.message);
-      // setTimeout(() => {
-      //  setConfirmMessage("");
-      //  }, 3000);
-      setList(list.filter((item) => item._id !== foodId));
-    } catch (err) {
-      setError(err.response.data.message);
-      setTimeout(() => {
-        setError("");
-      }, 3000);
-    }
-  };
-
+  const [loggedIn, setLoggedIn] = useState(false);
   const [list, setList] = useState([]);
+  const [createFood, setCreateFood] = useState({
+    foodUrl: "",
+    flagUrl: "",
+    name: "",
+    origin: "",
+    ingredients: "",
+  });
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem("token");
       try {
-        const res = await axios.get(`${API_URL}/my-list`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await axios.get(`${API_URL}/my-list`);
         setList(res.data.foods);
         console.log(res.data);
       } catch (err) {
@@ -43,6 +27,55 @@ const MyList = () => {
     };
     fetchData();
   }, []);
+
+  const onChangeHandler = (e) => {
+    setCreateFood({
+      ...createFood,
+      [e.target.name]: e.target.value,
+    });
+    console.log(createFood);
+  };
+
+  const submitFoodForm = async (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    try {
+      const res = await axios.post(`${API_URL}/my-list`, createFood);
+      setCreateFood({
+        foodUrl: "",
+        flagUrl: "",
+        name: "",
+        origin: "",
+        ingredients: "",
+      });
+      const updatedList = await axios.get(`${API_URL}/my-list`);
+      setList(updatedList.data.foods);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    setLoggedIn(localStorage.getItem("token") ? true : false);
+    axios.defaults.headers.common["Authorization"] = localStorage.getItem(
+      "token"
+    )
+      ? `Bearer ${localStorage.getItem("token")}`
+      : "";
+  }, []);
+
+  const removeFromList = async (foodId) => {
+    try {
+      const res = await axios.delete(`${API_URL}/my-list/${foodId}`);
+      console.log(res);
+      setList(list.filter((item) => item._id !== foodId));
+    } catch (err) {
+      setError(err.response.data.message);
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+    }
+  };
 
   return (
     <div className="list-page">
@@ -64,8 +97,12 @@ const MyList = () => {
                       width="150px;"
                       src={item.foodUrl}
                     />
+                    <img className="flagList-card" src={item.flagUrl} />
+                    <Card.Text className="listOrigin">{item.origin}</Card.Text>
                   </Card.Title>
-                  <Card.Text>{item.ingredients}</Card.Text>
+                  <Card.Text className="listIngredients">
+                    {item.ingredients}
+                  </Card.Text>
                   <Button
                     variant="danger"
                     className="list-delete"
@@ -75,9 +112,58 @@ const MyList = () => {
                   </Button>
                 </Card.Body>
               </li>
+              <li></li>
             </Card>
           ))}
         </ul>
+        <form className="list-form" onSubmit={submitFoodForm}>
+          <input
+            className="review-input"
+            type="text"
+            placeholder="Food URL"
+            name="foodUrl"
+            value={createFood.foodUrl}
+            onChange={onChangeHandler}
+            required
+          />
+          <input
+            className="review-input"
+            type="text"
+            placeholder="Flag URL(not required)"
+            name="flagUrl"
+            value={createFood.flagUrl}
+            onChange={onChangeHandler}
+          />
+          <input
+            className="review-input"
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={createFood.name}
+            onChange={onChangeHandler}
+            required
+          />
+          <input
+            className="review-input"
+            type="text"
+            placeholder="Origin"
+            name="origin"
+            value={createFood.origin}
+            onChange={onChangeHandler}
+            required
+          />
+          <input
+            className="review-input"
+            type="text"
+            placeholder="Ingredients(not required)"
+            name="ingredients"
+            value={createFood.ingredients}
+            onChange={onChangeHandler}
+          />
+          <Button className="listBtn" variant="light" type="submit">
+            Create your own food
+          </Button>
+        </form>
       </div>
     </div>
   );
