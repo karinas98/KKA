@@ -33,7 +33,7 @@ const Login = () => {
       localStorage.setItem("token", token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       setFormData(formData);
-      navigate("/");
+      navigate("/explore");
     } catch (err) {
       console.error("Error:", err);
       setError(err.response.data.message);

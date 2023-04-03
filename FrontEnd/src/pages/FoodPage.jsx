@@ -85,8 +85,10 @@ const FoodPage = () => {
               <Tab eventKey="Reviews" title="Reviews">
                 <div className="main-container">
                   {food.reviews &&
-                    food.reviews.map((review) => (
-                      <li className="posted">{review.text}</li>
+                    food.reviews.map((review, ind) => (
+                      <li key={ind} className="posted">
+                        {review.text}
+                      </li>
                     ))}
                   <div className="review-flexbox">
                     <form
