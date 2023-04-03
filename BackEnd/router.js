@@ -30,11 +30,17 @@ router
     validate,
     userController.register
   );
+router;
+
+router
+  .route("/my-list")
+  .get(auth, myListController.grabList)
+  .post(auth, myListController.createListFood);
 router
   .route("/my-list/:foodId")
   .post(auth, myListController.addFood)
   .delete(auth, myListController.deleteListItem);
-router.route("/my-list").get(auth, myListController.grabList);
+
 router.route("/login").post(userController.login);
 router.route("/users").get(userController.getAllUsers);
 router.route("/foods/:foodId").post(auth, reviewController.createReview);
