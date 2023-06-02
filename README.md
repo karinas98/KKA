@@ -162,4 +162,10 @@ The reviews section was a challenge for us because we had to brainstorm how to p
   ```
   
   ##Final Look
-  
+  ![](https://github.com/karinas98/project3-GA/blob/255ba734d4987286a60d9dca26d65d9d360b0ce7/Screenshot%202023-05-31%20at%2012.20.02.png)
+   ![](https://github.com/karinas98/project3-GA/blob/255ba734d4987286a60d9dca26d65d9d360b0ce7/Screenshot%202023-05-31%20at%2012.21.03.png)
+    ![](https://github.com/karinas98/project3-GA/blob/255ba734d4987286a60d9dca26d65d9d360b0ce7/Screenshot%202023-05-31%20at%2012.21.35.png)
+    
+ ## Areas of Improvement
+Improvement that I would implement would be towards a cleaner design and making the application fully responsive. Afterwards we also wanted to add in a map that would situate all foods added across the world on the map.
+
