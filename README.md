@@ -1,6 +1,6 @@
 ![GA Logo](https://raw.githubusercontent.com/karinas98/MusicLibraryProject/main/469f976e-1432-11e5-8199-6ac91363302b.png) 
 
-# Food Community - Project 3
+# Food Paradise - Project 3
 
 ##Deployment Link
 https://foods-paradise.netlify.app
