@@ -12,7 +12,7 @@ https://foods-paradise.netlify.app
 Build a full-stack application by making my own backend and front-end.
 Use an Express API to serve the data from a Mongo Database
 Consume the API with a separate front-end
-Deliver a complete and functioning product
+Deliver a complete and functioning product.
 
 
 ## Project Overview
