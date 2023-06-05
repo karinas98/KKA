@@ -2,10 +2,10 @@
 
 # Food Paradise - Project 3
 
-##Deployment Link
+## Deployment Link
 https://foods-paradise.netlify.app
 
-##Timeline
+## Timeline
 2 Weeks - Group Project
 
 ## Project Brief
